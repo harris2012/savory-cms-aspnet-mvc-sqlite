@@ -1,0 +1,61 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="app.welcome">首页</a></li>
+    <li><a ui-sref="app.app-list">应用列表页</a></li>
+    <li class="active">新增</li>
+</ol>
+
+<form class="form form-horizontal" name="createForm" novalidate>
+
+    <div class="form-group" ng-class="{'has-error':createForm.appId.$dirty&&createForm.appId.$error.required}">
+        <label class="col-sm-1 control-label">应用编号</label>
+        <div class="col-sm-2">
+            <input type="number" class="form-control" name="appId" ng-model="item.appId" required />
+            <p class="text-danger" ng-show="createForm.appId.$dirty && createForm.appId.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">应用类型</label>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-2" ng-repeat="x in appTypeIds">
+                    <div class="radio radio-inline icheck-success">
+                        <input type="radio" id="app_type_id_{{x.appTypeId}}" name="app_type_id" ng-checked="x.selected" ng-value="x" ng-model="$parent.item.appTypeId_value" />
+                        <label for="app_type_id_{{x.appTypeId}}">{{x.appTypeId}}({{x.appTypeName}})</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':createForm.appName.$dirty&&createForm.appName.$error.required}">
+        <label class="col-sm-1 control-label">应用名称</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="appName" ng-model="item.appName" required />
+            <p class="text-danger" ng-show="createForm.appName.$dirty && createForm.appName.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':createForm.dataStatus.$dirty&&createForm.dataStatus.$error.required}">
+        <label class="col-sm-1 control-label">数据状态</label>
+        <div class="col-sm-2">
+            <input type="number" class="form-control" name="dataStatus" ng-model="item.dataStatus" required />
+            <p class="text-danger" ng-show="createForm.dataStatus.$dirty && createForm.dataStatus.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':createForm.description.$dirty&&createForm.description.$error.required}">
+        <label class="col-sm-1 control-label">应用描述</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="description" ng-model="item.description" required />
+            <p class="text-danger" ng-show="createForm.description.$dirty && createForm.description.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-1">
+            <input type="button" ng-click="confirmCreate()" value="确认新增" class="btn btn-success" />
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,31 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="app.welcome">首页</a></li>
+    <li><a ui-sref="app.meta-repository-type-list">仓储类型列表页</a></li>
+    <li class="active">新增</li>
+</ol>
+
+<form class="form form-horizontal" name="createForm" novalidate>
+
+    <div class="form-group" ng-class="{'has-error':createForm.repositoryTypeId.$dirty&&createForm.repositoryTypeId.$error.required}">
+        <label class="col-sm-1 control-label">仓储类型编号</label>
+        <div class="col-sm-2">
+            <input type="number" class="form-control" name="repositoryTypeId" ng-model="item.repositoryTypeId" required />
+            <p class="text-danger" ng-show="createForm.repositoryTypeId.$dirty && createForm.repositoryTypeId.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':createForm.repositoryTypeName.$dirty&&createForm.repositoryTypeName.$error.required}">
+        <label class="col-sm-1 control-label">仓储类型名称</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="repositoryTypeName" ng-model="item.repositoryTypeName" required />
+            <p class="text-danger" ng-show="createForm.repositoryTypeName.$dirty && createForm.repositoryTypeName.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-1">
+            <input type="button" ng-click="confirmCreate()" value="确认新增" class="btn btn-success" />
+        </div>
+    </div>
+
+</form>

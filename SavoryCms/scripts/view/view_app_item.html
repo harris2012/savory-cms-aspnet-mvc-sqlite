@@ -1,0 +1,68 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="app.welcome">首页</a></li>
+    <li><a ui-sref="app.app-list">应用列表</a></li>
+    <li class="active">详情</li>
+</ol>
+
+<div class="row" ng-show="!loaded">
+    <div class="col-sm-12">
+        <img src="./images/loading.gif" width="20" height="20" />
+    </div>
+</div>
+
+<div class="row" ng-show="loaded && item == null">
+    404
+</div>
+
+<div class="form-horizontal" ng-show="loaded && item != null">
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">编号</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{item.id}}</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">应用编号</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{item.appId}}</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">应用类型</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">
+                <span ng-repeat="x in item.appTypeId">{{x.appTypeName}} </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">应用名称</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{item.appName}}</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">数据状态</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{item.dataStatus}}</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">应用描述</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{item.description}}</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-1">
+            <a ui-sref="app.app-update({id: item.id})" class="btn btn-success">编辑</a>
+        </div>
+    </div>
+</div>

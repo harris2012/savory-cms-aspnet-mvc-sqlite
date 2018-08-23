@@ -1,0 +1,48 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="app.welcome">首页</a></li>
+    <li><a ui-sref="app.meta-app-type-list">应用类型列表页</a></li>
+    <li class="active">编辑</li>
+</ol>
+
+<div class="row" ng-show="!loaded">
+    <div class="col-sm-12">
+        <img src="./images/loading.gif" width="20" height="20" />
+    </div>
+</div>
+
+<div class="row" ng-show="loaded && item == null">
+    404
+</div>
+
+<form class="form form-horizontal" ng-show="loaded && item != null" name="updateForm" novalidate>
+
+    <div class="form-group">
+        <label class="col-sm-1 control-label">编号</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">{{item.id}}</p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':createForm.appTypeId.$dirty&&createForm.appTypeId.$error.required}">
+        <label class="col-sm-1 control-label">应用类型编号</label>
+        <div class="col-sm-2">
+            <input type="number" class="form-control" name="appTypeId" ng-model="item.appTypeId" required />
+            <p class="text-danger" ng-show="updateForm.appTypeId.$dirty && updateForm.appTypeId.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':createForm.appTypeName.$dirty&&createForm.appTypeName.$error.required}">
+        <label class="col-sm-1 control-label">应用类型</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="appTypeName" ng-model="item.appTypeName" required />
+            <p class="text-danger" ng-show="updateForm.appTypeName.$dirty && updateForm.appTypeName.$error.required">必填</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-1">
+            <input type="button" ng-click="confirmUpdate()" value="确认更新" class="btn btn-success" />
+        </div>
+    </div>
+
+</form>
