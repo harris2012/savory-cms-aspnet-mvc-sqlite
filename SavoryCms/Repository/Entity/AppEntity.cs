@@ -12,9 +12,11 @@ namespace SavoryCms.Repository.Entity
 
         public int AppId { get; set; }
 
-        public int AppTypeId { get; set; }
+        public string AppEname { get; set; }
 
         public string AppName { get; set; }
+
+        public int AppTypeId { get; set; }
 
         public int DataStatus { get; set; }
 

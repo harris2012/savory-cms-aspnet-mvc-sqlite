@@ -15,11 +15,14 @@ namespace SavoryCms.Vo
         [JsonProperty("appId")]
         public int AppId { get; set; }
 
-        [JsonProperty("appTypeId")]
-        public List<MetaAppTypeVo> AppTypeId { get; set; }
+        [JsonProperty("appEname")]
+        public string AppEname { get; set; }
 
         [JsonProperty("appName")]
         public string AppName { get; set; }
+
+        [JsonProperty("appTypeId")]
+        public List<MetaAppTypeVo> AppTypeId { get; set; }
 
         [JsonProperty("dataStatus")]
         public int DataStatus { get; set; }

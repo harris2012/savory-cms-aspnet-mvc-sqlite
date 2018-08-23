@@ -24,8 +24,9 @@
         <tr>
             <th>编号</th>
             <th>应用编号</th>
-            <th>应用类型</th>
+            <th>英文名</th>
             <th>应用名称</th>
+            <th>应用类型</th>
             <th>数据状态</th>
             <th>应用描述</th>
             <th>查看</th>
@@ -36,10 +37,11 @@
         <tr ng-repeat="item in items">
             <td>{{item.id}}</td>
             <td>{{item.appId}}</td>
+            <td>{{item.appEname}}</td>
+            <td>{{item.appName}}</td>
             <td>
                 <span ng-repeat="x in item.appTypeId">{{x.appTypeName}} </span>
             </td>
-            <td>{{item.appName}}</td>
             <td>{{item.dataStatus}}</td>
             <td>{{item.description}}</td>
             <td><a ui-sref="app.app-item({id: item.id})">查看</a></td>

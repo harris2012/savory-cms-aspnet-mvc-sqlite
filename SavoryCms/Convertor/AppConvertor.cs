@@ -28,8 +28,9 @@ namespace SavoryCms.Convertor
 
             entity.Id = vo.Id;
             entity.AppId = vo.AppId;
-            entity.AppTypeId = getAppTypeId(vo);
+            entity.AppEname = vo.AppEname;
             entity.AppName = vo.AppName;
+            entity.AppTypeId = getAppTypeId(vo);
             entity.DataStatus = vo.DataStatus;
             entity.Description = vo.Description;
 
@@ -44,8 +45,9 @@ namespace SavoryCms.Convertor
 
             vo.Id = entity.Id;
             vo.AppId = entity.AppId;
-            vo.AppTypeId = getAppTypeId(metaAppTypeEntityList, entity, isEditable);
+            vo.AppEname = entity.AppEname;
             vo.AppName = entity.AppName;
+            vo.AppTypeId = getAppTypeId(metaAppTypeEntityList, entity, isEditable);
             vo.DataStatus = entity.DataStatus;
             vo.Description = entity.Description;
 

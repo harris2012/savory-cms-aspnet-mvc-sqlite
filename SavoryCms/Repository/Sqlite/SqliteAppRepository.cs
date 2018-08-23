@@ -21,17 +21,17 @@ namespace SavoryCms.Repository.Sqlite
 
         public void Create(AppEntity entity)
         {
-            string sql = "insert into cms_app(app_id, app_type_id, app_name, data_status, description) values (@AppId, @AppTypeId, @AppName, @DataStatus, @Description);";
+            string sql = "insert into cms_app(app_id, app_ename, app_name, app_type_id, data_status, description) values (@AppId, @AppEname, @AppName, @AppTypeId, @DataStatus, @Description);";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
-                sqliteConn.Execute(sql, new { AppId = entity.AppId, AppTypeId = entity.AppTypeId, AppName = entity.AppName, DataStatus = entity.DataStatus, Description = entity.Description });
+                sqliteConn.Execute(sql, new { AppId = entity.AppId, AppEname = entity.AppEname, AppName = entity.AppName, AppTypeId = entity.AppTypeId, DataStatus = entity.DataStatus, Description = entity.Description });
             }
         }
 
         public AppEntity GetById(long id)
         {
-            string sql = "select id as Id, app_id as AppId, app_type_id as AppTypeId, app_name as AppName, data_status as DataStatus, description as Description from cms_app where Id = ?";
+            string sql = "select id as Id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app where Id = ?";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -51,7 +51,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<AppEntity> GetEntityList()
         {
-            string sql = "select id as Id, app_id as AppId, app_type_id as AppTypeId, app_name as AppName, data_status as DataStatus, description as Description from cms_app";
+            string sql = "select id as Id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -61,7 +61,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<AppEntity> GetEntityList(int pageIndex, int pageSize)
         {
-            string sql = "select id as Id, app_id as AppId, app_type_id as AppTypeId, app_name as AppName, data_status as DataStatus, description as Description from cms_app limit @Start, @Count";
+            string sql = "select id as Id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app limit @Start, @Count";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -71,11 +71,11 @@ namespace SavoryCms.Repository.Sqlite
 
         public void Update(AppEntity entity)
         {
-            string sql = "update cms_app set app_id = @AppId, app_type_id = @AppTypeId, app_name = @AppName, data_status = @DataStatus, description = @Description where id = @Id;";
+            string sql = "update cms_app set app_id = @AppId, app_ename = @AppEname, app_name = @AppName, app_type_id = @AppTypeId, data_status = @DataStatus, description = @Description where id = @Id;";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
-                sqliteConn.Execute(sql, new { Id = entity.Id, AppId = entity.AppId, AppTypeId = entity.AppTypeId, AppName = entity.AppName, DataStatus = entity.DataStatus, Description = entity.Description });
+                sqliteConn.Execute(sql, new { Id = entity.Id, AppId = entity.AppId, AppEname = entity.AppEname, AppName = entity.AppName, AppTypeId = entity.AppTypeId, DataStatus = entity.DataStatus, Description = entity.Description });
             }
         }
     }

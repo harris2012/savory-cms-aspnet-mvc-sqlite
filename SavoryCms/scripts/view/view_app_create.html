@@ -14,6 +14,23 @@
         </div>
     </div>
 
+    <div class="form-group" ng-class="{'has-error':createForm.appEname.$dirty&&(createForm.appEname.$error.required||createForm.appEname.$error.pattern)}">
+        <label class="col-sm-1 control-label">英文名</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="appEname" ng-model="item.appEname" required ng-pattern="/^[a-z]+(\-[a-z]+)*$/" />
+            <p class="text-danger" ng-show="createForm.appEname.$dirty && createForm.appEname.$error.required">必填</p>
+            <p class="text-danger" ng-show="createForm.appEname.$dirty && createForm.appEname.$error.pattern">格式不正确</p>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':createForm.appName.$dirty&&createForm.appName.$error.required}">
+        <label class="col-sm-1 control-label">应用名称</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="appName" ng-model="item.appName" required />
+            <p class="text-danger" ng-show="createForm.appName.$dirty && createForm.appName.$error.required">必填</p>
+        </div>
+    </div>
+
     <div class="form-group">
         <label class="col-sm-1 control-label">应用类型</label>
         <div class="col-sm-10">
@@ -25,14 +42,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error':createForm.appName.$dirty&&createForm.appName.$error.required}">
-        <label class="col-sm-1 control-label">应用名称</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" name="appName" ng-model="item.appName" required />
-            <p class="text-danger" ng-show="createForm.appName.$dirty && createForm.appName.$error.required">必填</p>
         </div>
     </div>
 
