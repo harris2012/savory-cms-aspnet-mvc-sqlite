@@ -9,6 +9,11 @@ namespace SavoryCms.Controllers.Request
 {
     public class MetaRepositoryTypeUpdateRequest
     {
-        public MetaRepositoryTypeVo Item { get; set; }
+
+        public int? Id { get; set; }
+
+        public int? RepositoryTypeId { get; set; }
+
+        public string RepositoryTypeName { get; set; }
     }
 }

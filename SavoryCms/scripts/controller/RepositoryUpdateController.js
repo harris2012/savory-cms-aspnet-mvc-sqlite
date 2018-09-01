@@ -12,11 +12,9 @@ function RepositoryUpdateController($scope, $state, $stateParams, SavoryCmsServi
 
         $scope.item = response.item;
         {
-            $scope.repositoryTypeIds = $scope.item.repositoryTypeId;
-            var items = [];
             for (var i = 0; i < $scope.item.repositoryTypeId.length; i++) {
                 if ($scope.item.repositoryTypeId[i].selected) {
-                    $scope.item.repositoryTypeId_value = $scope.item.repositoryTypeId[i];
+                    $scope.item.repository_type_id_value = $scope.item.repositoryTypeId[i].repositoryTypeId;
                     break;
                 }
             }
@@ -37,18 +35,12 @@ function RepositoryUpdateController($scope, $state, $stateParams, SavoryCmsServi
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
-        {
-            var items = [];
-            for (var i = 0; i < $scope.repositoryTypeIds.length; i++) {
-                if ($scope.repositoryTypeIds[i] == $scope.item.repositoryTypeId_value) {
-                    items.push($scope.repositoryTypeIds[i]);
-                    $scope.repositoryTypeIds[i].selected = true;
-                    break;
-                }
-            }
-            request.item.repositoryTypeId = items;
-        }
+        request.id = $scope.item.id;
+        request.repositoryName = $scope.item.repositoryName;
+        request.repositoryTypeId = $scope.item.repository_type_id_value;
+        request.gitlabProjectFullname = $scope.item.gitlabProjectFullname;
+        request.dataStatus = $scope.item.dataStatus;
+        request.description = $scope.item.description;
 
         SavoryCmsService.repository_update(request).then(repository_update_callback)
     }

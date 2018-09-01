@@ -7,13 +7,13 @@ using SavoryCms.Repository.Entity;
 
 namespace SavoryCms.Meta
 {
-    public interface IMetaAppTypeMeta
+    public interface ITheMetaAppTypeMeta
     {
         /// <summary>
         /// 获取元数据列表
         /// </summary>
         /// <returns>元数据列表</returns>
-        List<MetaAppTypeEntity> GetEntityList();
+        List<TheMetaAppTypeEntity> GetEntityList();
 
         /// <summary>
         /// 刷新缓存

@@ -9,6 +9,19 @@ namespace SavoryCms.Controllers.Request
 {
     public class AppUpdateRequest
     {
-        public AppVo Item { get; set; }
+
+        public int? Id { get; set; }
+
+        public int? AppId { get; set; }
+
+        public string AppEname { get; set; }
+
+        public string AppName { get; set; }
+
+        public int? AppTypeId { get; set; }
+
+        public int? DataStatus { get; set; }
+
+        public string Description { get; set; }
     }
 }

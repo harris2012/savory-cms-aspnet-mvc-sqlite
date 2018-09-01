@@ -10,6 +10,7 @@ function SavoryCmsService($resource, $q) {
         app_disable: { method: 'POST', url: 'api/app/disable' },
         app_create: { method: 'POST', url: 'api/app/create' },
         app_editable: { method: 'POST', url: 'api/app/editable' },
+        app_empty: { method: 'POST', url: 'api/app/empty' },
 
         repository_items: { method: 'POST', url: 'api/repository/items' },
         repository_item: { method: 'POST', url: 'api/repository/item' },
@@ -19,6 +20,7 @@ function SavoryCmsService($resource, $q) {
         repository_disable: { method: 'POST', url: 'api/repository/disable' },
         repository_create: { method: 'POST', url: 'api/repository/create' },
         repository_editable: { method: 'POST', url: 'api/repository/editable' },
+        repository_empty: { method: 'POST', url: 'api/repository/empty' },
 
         meta_app_type_items: { method: 'POST', url: 'api/meta-app-type/items' },
         meta_app_type_item: { method: 'POST', url: 'api/meta-app-type/item' },
@@ -28,6 +30,7 @@ function SavoryCmsService($resource, $q) {
         meta_app_type_disable: { method: 'POST', url: 'api/meta-app-type/disable' },
         meta_app_type_create: { method: 'POST', url: 'api/meta-app-type/create' },
         meta_app_type_editable: { method: 'POST', url: 'api/meta-app-type/editable' },
+        meta_app_type_empty: { method: 'POST', url: 'api/meta-app-type/empty' },
 
         meta_repository_type_items: { method: 'POST', url: 'api/meta-repository-type/items' },
         meta_repository_type_item: { method: 'POST', url: 'api/meta-repository-type/item' },
@@ -37,6 +40,7 @@ function SavoryCmsService($resource, $q) {
         meta_repository_type_disable: { method: 'POST', url: 'api/meta-repository-type/disable' },
         meta_repository_type_create: { method: 'POST', url: 'api/meta-repository-type/create' },
         meta_repository_type_editable: { method: 'POST', url: 'api/meta-repository-type/editable' },
+        meta_repository_type_empty: { method: 'POST', url: 'api/meta-repository-type/empty' },
 
         user_profile: { method: 'POST', url: 'api/user/profile' }
     });
@@ -51,6 +55,7 @@ function SavoryCmsService($resource, $q) {
         app_disable: function (request) { var d = $q.defer(); resource.app_disable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         app_create: function (request) { var d = $q.defer(); resource.app_create({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         app_editable: function (request) { var d = $q.defer(); resource.app_editable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
+        app_empty: function (request) { var d = $q.defer(); resource.app_empty({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
 
         repository_items: function (request) { var d = $q.defer(); resource.repository_items({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         repository_item: function (request) { var d = $q.defer(); resource.repository_item({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
@@ -60,6 +65,7 @@ function SavoryCmsService($resource, $q) {
         repository_disable: function (request) { var d = $q.defer(); resource.repository_disable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         repository_create: function (request) { var d = $q.defer(); resource.repository_create({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         repository_editable: function (request) { var d = $q.defer(); resource.repository_editable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
+        repository_empty: function (request) { var d = $q.defer(); resource.repository_empty({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
 
         meta_app_type_items: function (request) { var d = $q.defer(); resource.meta_app_type_items({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         meta_app_type_item: function (request) { var d = $q.defer(); resource.meta_app_type_item({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
@@ -69,6 +75,7 @@ function SavoryCmsService($resource, $q) {
         meta_app_type_disable: function (request) { var d = $q.defer(); resource.meta_app_type_disable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         meta_app_type_create: function (request) { var d = $q.defer(); resource.meta_app_type_create({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         meta_app_type_editable: function (request) { var d = $q.defer(); resource.meta_app_type_editable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
+        meta_app_type_empty: function (request) { var d = $q.defer(); resource.meta_app_type_empty({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
 
         meta_repository_type_items: function (request) { var d = $q.defer(); resource.meta_repository_type_items({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         meta_repository_type_item: function (request) { var d = $q.defer(); resource.meta_repository_type_item({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
@@ -78,6 +85,7 @@ function SavoryCmsService($resource, $q) {
         meta_repository_type_disable: function (request) { var d = $q.defer(); resource.meta_repository_type_disable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         meta_repository_type_create: function (request) { var d = $q.defer(); resource.meta_repository_type_create({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
         meta_repository_type_editable: function (request) { var d = $q.defer(); resource.meta_repository_type_editable({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
+        meta_repository_type_empty: function (request) { var d = $q.defer(); resource.meta_repository_type_empty({}, request, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; },
 
         user_profile: function () { var d = $q.defer(); resource.user_profile({}, function (result) { d.resolve(result); }, function (result) { d.reject(result); }); return d.promise; }
     }

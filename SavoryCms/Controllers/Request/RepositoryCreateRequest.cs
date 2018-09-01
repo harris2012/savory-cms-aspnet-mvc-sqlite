@@ -9,6 +9,16 @@ namespace SavoryCms.Controllers.Request
 {
     public class RepositoryCreateRequest
     {
-        public RepositoryVo Item { get; set; }
+
+        public string RepositoryName { get; set; }
+
+        public int? RepositoryTypeId { get; set; }
+
+        public string GitlabProjectFullname { get; set; }
+
+        public int? DataStatus { get; set; }
+
+        public string Description { get; set; }
+
     }
 }

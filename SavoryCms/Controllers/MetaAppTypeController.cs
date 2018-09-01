@@ -26,13 +26,16 @@ namespace SavoryCms.Controllers
 
         private IMetaAppTypeConvertor metaAppTypeConvertor;
 
-        private IMetaAppTypeMeta metaAppTypeMeta;
+        private ITheMetaAppTypeMeta theMetaAppTypeMeta;
 
-        public MetaAppTypeController(IMetaAppTypeRepository metaAppTypeRepository, IMetaAppTypeConvertor metaAppTypeConvertor, IMetaAppTypeMeta metaAppTypeMeta)
+        public MetaAppTypeController(
+            ITheMetaAppTypeMeta theMetaAppTypeMeta,
+            IMetaAppTypeRepository metaAppTypeRepository,
+            IMetaAppTypeConvertor metaAppTypeConvertor)
         {
             this.metaAppTypeRepository = metaAppTypeRepository;
             this.metaAppTypeConvertor = metaAppTypeConvertor;
-            this.metaAppTypeMeta = metaAppTypeMeta;
+            this.theMetaAppTypeMeta = theMetaAppTypeMeta;
         }
 
         [HttpPost]
@@ -43,7 +46,7 @@ namespace SavoryCms.Controllers
 
             List<MetaAppTypeEntity> entityList = metaAppTypeRepository.GetEntityList(request.PageIndex, PAGE_SIZE);
 
-            response.Items = metaAppTypeConvertor.toVoList(entityList);
+            response.Items = metaAppTypeConvertor.toLessVoList(entityList);
 
             response.Status = 1;
             return response;
@@ -53,7 +56,6 @@ namespace SavoryCms.Controllers
         [Route("count")]
         public MetaAppTypeCountResponse Count([FromBody]MetaAppTypeCountRequest request)
         {
-
             MetaAppTypeCountResponse response = new MetaAppTypeCountResponse();
 
             int count = metaAppTypeRepository.GetCount();
@@ -68,7 +70,6 @@ namespace SavoryCms.Controllers
         [Route("item")]
         public MetaAppTypeItemResponse Item([FromBody]MetaAppTypeItemRequest request)
         {
-
             MetaAppTypeItemResponse response = new MetaAppTypeItemResponse();
 
             if (request.Id <= 0)
@@ -84,7 +85,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = metaAppTypeConvertor.toVo(entity, false);
+            response.Item = metaAppTypeConvertor.toLessVo(entity);
 
             response.Status = 1;
             return response;
@@ -94,12 +95,23 @@ namespace SavoryCms.Controllers
         [Route("create")]
         public MetaAppTypeCreateResponse Create([FromBody]MetaAppTypeCreateRequest request)
         {
-
             MetaAppTypeCreateResponse response = new MetaAppTypeCreateResponse();
 
-            metaAppTypeRepository.Create(metaAppTypeConvertor.toEntity(request.Item));
+            metaAppTypeRepository.Create(metaAppTypeConvertor.toEntity(request));
 
-            metaAppTypeMeta.Refresh();
+            theMetaAppTypeMeta.Refresh();
+
+            response.Status = 1;
+            return response;
+        }
+
+        [HttpPost]
+        [Route("empty")]
+        public MetaAppTypeEmptyResponse Empty([FromBody]MetaAppTypeEditableRequest request)
+        {
+            MetaAppTypeEmptyResponse response = new MetaAppTypeEmptyResponse();
+
+            response.Item = metaAppTypeConvertor.toEmptyVo();
 
             response.Status = 1;
             return response;
@@ -125,7 +137,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = metaAppTypeConvertor.toVo(entity, true);
+            response.Item = metaAppTypeConvertor.toMoreVo(entity);
 
             response.Status = 1;
             return response;
@@ -138,22 +150,22 @@ namespace SavoryCms.Controllers
 
             MetaAppTypeUpdateResponse response = new MetaAppTypeUpdateResponse();
 
-            if (request.Item.Id <= 0)
+            if (request.Id == 0 || request.Id < 0)
             {
                 response.Status = -1;
                 return response;
             }
 
-            MetaAppTypeEntity entity = metaAppTypeRepository.GetById(request.Item.Id);
+            MetaAppTypeEntity entity = metaAppTypeRepository.GetById(request.Id.Value);
             if (entity == null)
             {
                 response.Status = 404;
                 return response;
             }
 
-            metaAppTypeRepository.Update(metaAppTypeConvertor.toEntity(request.Item));
+            metaAppTypeRepository.Update(metaAppTypeConvertor.toEntity(request));
 
-            metaAppTypeMeta.Refresh();
+            theMetaAppTypeMeta.Refresh();
 
             response.Status = 1;
             return response;

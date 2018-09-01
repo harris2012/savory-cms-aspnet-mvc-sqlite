@@ -10,19 +10,19 @@ namespace SavoryCms.Vo
     {
 
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("repositoryName")]
         public string RepositoryName { get; set; }
 
         [JsonProperty("repositoryTypeId")]
-        public List<MetaRepositoryTypeVo> RepositoryTypeId { get; set; }
+        public List<TheMetaRepositoryTypeVo> RepositoryTypeId { get; set; }
 
         [JsonProperty("gitlabProjectFullname")]
         public string GitlabProjectFullname { get; set; }
 
         [JsonProperty("dataStatus")]
-        public int DataStatus { get; set; }
+        public int? DataStatus { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

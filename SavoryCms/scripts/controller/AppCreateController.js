@@ -1,6 +1,20 @@
 function AppCreateController($scope, $state, $stateParams, SavoryCmsService) {
 
-    $scope.item = {};
+    function app_empty_callback(response) {
+
+        if (response.status != 1) {
+            console.log(response.message);
+            return;
+        }
+
+        $scope.item = response.item;
+        {
+            if($scope.item.appTypeId.length > 0)
+            {
+                $scope.item.app_type_id_value = $scope.item.appTypeId[0].appTypeId;
+            }
+        }
+    }
 
     function app_create_callback(response) {
 
@@ -14,39 +28,24 @@ function AppCreateController($scope, $state, $stateParams, SavoryCmsService) {
         $state.go('app.app-list');
     }
 
-    function meta_app_type_items_for_app_type_id_callback(response) {
-
-        if (response.status == 1) {
-            $scope.appTypeIds = response.items;
-        }
-    }
-
     $scope.confirmCreate = function () {
 
         $scope.waiting = true;
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
-        {
-            var items = [];
-            for (var i = 0; i < $scope.appTypeIds.length; i++) {
-                if ($scope.appTypeIds[i] == $scope.item.appTypeId_value) {
-                    items.push($scope.appTypeIds[i]);
-                    $scope.appTypeIds[i].selected = true;
-                    break;
-                }
-            }
-            request.item.appTypeId = items;
-        }
+        request.id = $scope.item.id;
+        request.appId = $scope.item.appId;
+        request.appEname = $scope.item.appEname;
+        request.appName = $scope.item.appName;
+        request.appTypeId = $scope.item.app_type_id_value;
+        request.dataStatus = $scope.item.dataStatus;
+        request.description = $scope.item.description;
 
         SavoryCmsService.app_create(request).then(app_create_callback)
     }
 
     {
-        var request = {};
-        request.pageIndex = 1;
-
-        SavoryCmsService.meta_app_type_items(request).then(meta_app_type_items_for_app_type_id_callback)
+        SavoryCmsService.app_empty({}).then(app_empty_callback);
     }
 }

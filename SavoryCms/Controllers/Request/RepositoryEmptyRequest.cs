@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace SavoryCms.Controllers.Request
 {
-    public class RepositoryFiltersRequest
+    public class RepositoryEmptyRequest
     {
-
     }
 }

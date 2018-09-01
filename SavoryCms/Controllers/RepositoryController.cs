@@ -25,7 +25,9 @@ namespace SavoryCms.Controllers
 
         private IRepositoryConvertor repositoryConvertor;
 
-        public RepositoryController(IRepositoryRepository repositoryRepository, IRepositoryConvertor repositoryConvertor)
+        public RepositoryController(
+            IRepositoryRepository repositoryRepository,
+            IRepositoryConvertor repositoryConvertor)
         {
             this.repositoryRepository = repositoryRepository;
             this.repositoryConvertor = repositoryConvertor;
@@ -39,7 +41,7 @@ namespace SavoryCms.Controllers
 
             List<RepositoryEntity> entityList = repositoryRepository.GetEntityList(request.PageIndex, PAGE_SIZE);
 
-            response.Items = repositoryConvertor.toVoList(entityList);
+            response.Items = repositoryConvertor.toLessVoList(entityList);
 
             response.Status = 1;
             return response;
@@ -49,7 +51,6 @@ namespace SavoryCms.Controllers
         [Route("count")]
         public RepositoryCountResponse Count([FromBody]RepositoryCountRequest request)
         {
-
             RepositoryCountResponse response = new RepositoryCountResponse();
 
             int count = repositoryRepository.GetCount();
@@ -64,7 +65,6 @@ namespace SavoryCms.Controllers
         [Route("item")]
         public RepositoryItemResponse Item([FromBody]RepositoryItemRequest request)
         {
-
             RepositoryItemResponse response = new RepositoryItemResponse();
 
             if (request.Id <= 0)
@@ -80,7 +80,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = repositoryConvertor.toVo(entity, false);
+            response.Item = repositoryConvertor.toLessVo(entity);
 
             response.Status = 1;
             return response;
@@ -90,10 +90,21 @@ namespace SavoryCms.Controllers
         [Route("create")]
         public RepositoryCreateResponse Create([FromBody]RepositoryCreateRequest request)
         {
-
             RepositoryCreateResponse response = new RepositoryCreateResponse();
 
-            repositoryRepository.Create(repositoryConvertor.toEntity(request.Item));
+            repositoryRepository.Create(repositoryConvertor.toEntity(request));
+
+            response.Status = 1;
+            return response;
+        }
+
+        [HttpPost]
+        [Route("empty")]
+        public RepositoryEmptyResponse Empty([FromBody]RepositoryEditableRequest request)
+        {
+            RepositoryEmptyResponse response = new RepositoryEmptyResponse();
+
+            response.Item = repositoryConvertor.toEmptyVo();
 
             response.Status = 1;
             return response;
@@ -119,7 +130,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = repositoryConvertor.toVo(entity, true);
+            response.Item = repositoryConvertor.toMoreVo(entity);
 
             response.Status = 1;
             return response;
@@ -132,20 +143,20 @@ namespace SavoryCms.Controllers
 
             RepositoryUpdateResponse response = new RepositoryUpdateResponse();
 
-            if (request.Item.Id <= 0)
+            if (request.Id == 0 || request.Id < 0)
             {
                 response.Status = -1;
                 return response;
             }
 
-            RepositoryEntity entity = repositoryRepository.GetById(request.Item.Id);
+            RepositoryEntity entity = repositoryRepository.GetById(request.Id.Value);
             if (entity == null)
             {
                 response.Status = 404;
                 return response;
             }
 
-            repositoryRepository.Update(repositoryConvertor.toEntity(request.Item));
+            repositoryRepository.Update(repositoryConvertor.toEntity(request));
 
             response.Status = 1;
             return response;

@@ -12,11 +12,9 @@ function AppUpdateController($scope, $state, $stateParams, SavoryCmsService) {
 
         $scope.item = response.item;
         {
-            $scope.appTypeIds = $scope.item.appTypeId;
-            var items = [];
             for (var i = 0; i < $scope.item.appTypeId.length; i++) {
                 if ($scope.item.appTypeId[i].selected) {
-                    $scope.item.appTypeId_value = $scope.item.appTypeId[i];
+                    $scope.item.app_type_id_value = $scope.item.appTypeId[i].appTypeId;
                     break;
                 }
             }
@@ -37,18 +35,13 @@ function AppUpdateController($scope, $state, $stateParams, SavoryCmsService) {
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
-        {
-            var items = [];
-            for (var i = 0; i < $scope.appTypeIds.length; i++) {
-                if ($scope.appTypeIds[i] == $scope.item.appTypeId_value) {
-                    items.push($scope.appTypeIds[i]);
-                    $scope.appTypeIds[i].selected = true;
-                    break;
-                }
-            }
-            request.item.appTypeId = items;
-        }
+        request.id = $scope.item.id;
+        request.appId = $scope.item.appId;
+        request.appEname = $scope.item.appEname;
+        request.appName = $scope.item.appName;
+        request.appTypeId = $scope.item.app_type_id_value;
+        request.dataStatus = $scope.item.dataStatus;
+        request.description = $scope.item.description;
 
         SavoryCmsService.app_update(request).then(app_update_callback)
     }

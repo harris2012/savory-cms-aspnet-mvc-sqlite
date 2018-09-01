@@ -7,6 +7,5 @@ namespace SavoryCms.Controllers.Request
 {
     public class MetaRepositoryTypeCountRequest
     {
-
     }
 }

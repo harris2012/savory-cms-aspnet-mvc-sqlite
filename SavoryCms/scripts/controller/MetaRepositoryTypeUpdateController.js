@@ -27,7 +27,9 @@ function MetaRepositoryTypeUpdateController($scope, $state, $stateParams, Savory
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
+        request.id = $scope.item.id;
+        request.repositoryTypeId = $scope.item.repositoryTypeId;
+        request.repositoryTypeName = $scope.item.repositoryTypeName;
 
         SavoryCmsService.meta_repository_type_update(request).then(meta_repository_type_update_callback)
     }

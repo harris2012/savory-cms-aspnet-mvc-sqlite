@@ -34,16 +34,10 @@
     <div class="form-group">
         <label class="col-sm-1 control-label">仓储类型编号</label>
         <div class="col-sm-10">
-            <div class="row">
-                <div class="col-sm-2" ng-repeat="x in repositoryTypeIds">
-                    <div class="radio radio-inline icheck-success">
-                        <input type="radio" id="repository_type_id_{{x.repositoryTypeId}}" name="repository_type_id" ng-checked="x.selected" ng-value="x" ng-model="$parent.item.repositoryTypeId_value" />
-                        <label for="repository_type_id_{{x.repositoryTypeId}}">{{x.repositoryTypeId}}({{x.repositoryTypeName}})</label>
-                    </div>
-                </div>
+            <div class="icheck-primary icheck-inline" ng-repeat="x in item.repositoryTypeId">
+                <input type="radio" id="repositoryTypeId_{{x.repositoryTypeId}}" name="repositoryTypeId" ng-value="x.repositoryTypeId" ng-model="$parent.item.repository_type_id_value" />
+                <label for="repositoryTypeId_{{x.repositoryTypeId}}">{{x.repositoryTypeId}}({{x.repositoryTypeName}})</label>
             </div>
-        </div>
-    </div>
         </div>
     </div>
 

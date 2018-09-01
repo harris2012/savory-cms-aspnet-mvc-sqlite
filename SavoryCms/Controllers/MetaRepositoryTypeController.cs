@@ -26,13 +26,16 @@ namespace SavoryCms.Controllers
 
         private IMetaRepositoryTypeConvertor metaRepositoryTypeConvertor;
 
-        private IMetaRepositoryTypeMeta metaRepositoryTypeMeta;
+        private ITheMetaRepositoryTypeMeta theMetaRepositoryTypeMeta;
 
-        public MetaRepositoryTypeController(IMetaRepositoryTypeRepository metaRepositoryTypeRepository, IMetaRepositoryTypeConvertor metaRepositoryTypeConvertor, IMetaRepositoryTypeMeta metaRepositoryTypeMeta)
+        public MetaRepositoryTypeController(
+            ITheMetaRepositoryTypeMeta theMetaRepositoryTypeMeta,
+            IMetaRepositoryTypeRepository metaRepositoryTypeRepository,
+            IMetaRepositoryTypeConvertor metaRepositoryTypeConvertor)
         {
             this.metaRepositoryTypeRepository = metaRepositoryTypeRepository;
             this.metaRepositoryTypeConvertor = metaRepositoryTypeConvertor;
-            this.metaRepositoryTypeMeta = metaRepositoryTypeMeta;
+            this.theMetaRepositoryTypeMeta = theMetaRepositoryTypeMeta;
         }
 
         [HttpPost]
@@ -43,7 +46,7 @@ namespace SavoryCms.Controllers
 
             List<MetaRepositoryTypeEntity> entityList = metaRepositoryTypeRepository.GetEntityList(request.PageIndex, PAGE_SIZE);
 
-            response.Items = metaRepositoryTypeConvertor.toVoList(entityList);
+            response.Items = metaRepositoryTypeConvertor.toLessVoList(entityList);
 
             response.Status = 1;
             return response;
@@ -53,7 +56,6 @@ namespace SavoryCms.Controllers
         [Route("count")]
         public MetaRepositoryTypeCountResponse Count([FromBody]MetaRepositoryTypeCountRequest request)
         {
-
             MetaRepositoryTypeCountResponse response = new MetaRepositoryTypeCountResponse();
 
             int count = metaRepositoryTypeRepository.GetCount();
@@ -68,7 +70,6 @@ namespace SavoryCms.Controllers
         [Route("item")]
         public MetaRepositoryTypeItemResponse Item([FromBody]MetaRepositoryTypeItemRequest request)
         {
-
             MetaRepositoryTypeItemResponse response = new MetaRepositoryTypeItemResponse();
 
             if (request.Id <= 0)
@@ -84,7 +85,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = metaRepositoryTypeConvertor.toVo(entity, false);
+            response.Item = metaRepositoryTypeConvertor.toLessVo(entity);
 
             response.Status = 1;
             return response;
@@ -94,12 +95,23 @@ namespace SavoryCms.Controllers
         [Route("create")]
         public MetaRepositoryTypeCreateResponse Create([FromBody]MetaRepositoryTypeCreateRequest request)
         {
-
             MetaRepositoryTypeCreateResponse response = new MetaRepositoryTypeCreateResponse();
 
-            metaRepositoryTypeRepository.Create(metaRepositoryTypeConvertor.toEntity(request.Item));
+            metaRepositoryTypeRepository.Create(metaRepositoryTypeConvertor.toEntity(request));
 
-            metaRepositoryTypeMeta.Refresh();
+            theMetaRepositoryTypeMeta.Refresh();
+
+            response.Status = 1;
+            return response;
+        }
+
+        [HttpPost]
+        [Route("empty")]
+        public MetaRepositoryTypeEmptyResponse Empty([FromBody]MetaRepositoryTypeEditableRequest request)
+        {
+            MetaRepositoryTypeEmptyResponse response = new MetaRepositoryTypeEmptyResponse();
+
+            response.Item = metaRepositoryTypeConvertor.toEmptyVo();
 
             response.Status = 1;
             return response;
@@ -125,7 +137,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = metaRepositoryTypeConvertor.toVo(entity, true);
+            response.Item = metaRepositoryTypeConvertor.toMoreVo(entity);
 
             response.Status = 1;
             return response;
@@ -138,22 +150,22 @@ namespace SavoryCms.Controllers
 
             MetaRepositoryTypeUpdateResponse response = new MetaRepositoryTypeUpdateResponse();
 
-            if (request.Item.Id <= 0)
+            if (request.Id == 0 || request.Id < 0)
             {
                 response.Status = -1;
                 return response;
             }
 
-            MetaRepositoryTypeEntity entity = metaRepositoryTypeRepository.GetById(request.Item.Id);
+            MetaRepositoryTypeEntity entity = metaRepositoryTypeRepository.GetById(request.Id.Value);
             if (entity == null)
             {
                 response.Status = 404;
                 return response;
             }
 
-            metaRepositoryTypeRepository.Update(metaRepositoryTypeConvertor.toEntity(request.Item));
+            metaRepositoryTypeRepository.Update(metaRepositoryTypeConvertor.toEntity(request));
 
-            metaRepositoryTypeMeta.Refresh();
+            theMetaRepositoryTypeMeta.Refresh();
 
             response.Status = 1;
             return response;

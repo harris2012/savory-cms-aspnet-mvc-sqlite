@@ -10,10 +10,10 @@ namespace SavoryCms.Vo
     {
 
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("appId")]
-        public int AppId { get; set; }
+        public int? AppId { get; set; }
 
         [JsonProperty("appEname")]
         public string AppEname { get; set; }
@@ -22,10 +22,10 @@ namespace SavoryCms.Vo
         public string AppName { get; set; }
 
         [JsonProperty("appTypeId")]
-        public List<MetaAppTypeVo> AppTypeId { get; set; }
+        public List<TheMetaAppTypeVo> AppTypeId { get; set; }
 
         [JsonProperty("dataStatus")]
-        public int DataStatus { get; set; }
+        public int? DataStatus { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

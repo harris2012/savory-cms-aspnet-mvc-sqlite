@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using SavoryCms.Meta;
+using SavoryCms.Controllers.Request;
 using SavoryCms.Repository.Entity;
 using SavoryCms.Vo;
 
@@ -12,63 +13,76 @@ namespace SavoryCms.Convertor
     public class RepositoryConvertor : IRepositoryConvertor
     {
 
-        private IMetaRepositoryTypeMeta metaRepositoryTypeMeta;
+        private ITheMetaRepositoryTypeMeta theMetaRepositoryTypeMeta;
+        private ITheMetaRepositoryTypeConvertor theMetaRepositoryTypeConvertor;
 
-        private IMetaRepositoryTypeConvertor metaRepositoryTypeConvertor;
-
-        public RepositoryConvertor(IMetaRepositoryTypeMeta metaRepositoryTypeMeta, IMetaRepositoryTypeConvertor metaRepositoryTypeConvertor)
+        public RepositoryConvertor(
+            ITheMetaRepositoryTypeMeta theMetaRepositoryTypeMeta,
+            ITheMetaRepositoryTypeConvertor theMetaRepositoryTypeConvertor
+        )
         {
-            this.metaRepositoryTypeMeta = metaRepositoryTypeMeta;
-            this.metaRepositoryTypeConvertor = metaRepositoryTypeConvertor;
+            this.theMetaRepositoryTypeMeta = theMetaRepositoryTypeMeta;
+            this.theMetaRepositoryTypeConvertor = theMetaRepositoryTypeConvertor;
         }
 
-        public RepositoryEntity toEntity(RepositoryVo vo)
+        public RepositoryEntity toEntity(RepositoryCreateRequest request)
         {
             RepositoryEntity entity = new RepositoryEntity();
 
-            entity.Id = vo.Id;
-            entity.RepositoryName = vo.RepositoryName;
-            entity.RepositoryTypeId = getRepositoryTypeId(vo);
-            entity.GitlabProjectFullname = vo.GitlabProjectFullname;
-            entity.DataStatus = vo.DataStatus;
-            entity.Description = vo.Description;
+            entity.RepositoryName = request.RepositoryName;
+            entity.RepositoryTypeId = request.RepositoryTypeId != null ? request.RepositoryTypeId.Value : 0;
+            entity.GitlabProjectFullname = request.GitlabProjectFullname;
+            entity.DataStatus = request.DataStatus != null ? request.DataStatus.Value : 0;
+            entity.Description = request.Description;
 
             return entity;
         }
 
-        public RepositoryVo toVo(RepositoryEntity entity, bool isEditable)
+        public RepositoryEntity toEntity(RepositoryUpdateRequest request)
+        {
+            RepositoryEntity entity = new RepositoryEntity();
+
+            entity.Id = request.Id != null ? request.Id.Value : 0;
+            entity.RepositoryName = request.RepositoryName;
+            entity.RepositoryTypeId = request.RepositoryTypeId != null ? request.RepositoryTypeId.Value : 0;
+            entity.GitlabProjectFullname = request.GitlabProjectFullname;
+            entity.DataStatus = request.DataStatus != null ? request.DataStatus.Value : 0;
+            entity.Description = request.Description;
+
+            return entity;
+        }
+
+        public RepositoryVo toEmptyVo()
         {
             RepositoryVo vo = new RepositoryVo();
 
-            List<MetaRepositoryTypeEntity> metaRepositoryTypeEntityList = metaRepositoryTypeMeta.GetEntityList();
-
-            vo.Id = entity.Id;
-            vo.RepositoryName = entity.RepositoryName;
-            vo.RepositoryTypeId = getRepositoryTypeId(metaRepositoryTypeEntityList, entity, isEditable);
-            vo.GitlabProjectFullname = entity.GitlabProjectFullname;
-            vo.DataStatus = entity.DataStatus;
-            vo.Description = entity.Description;
+            List<TheMetaRepositoryTypeEntity> theMetaRepositoryTypeEntityList = theMetaRepositoryTypeMeta.GetEntityList();
+            vo.RepositoryTypeId = theMetaRepositoryTypeConvertor.getVoList(theMetaRepositoryTypeEntityList);
 
             return vo;
         }
 
-        public List<RepositoryEntity> toEntityList(List<RepositoryVo> voList)
+        public RepositoryVo toLessVo(RepositoryEntity entity)
         {
-            if (voList == null || voList.Count == 0)
-            {
-                return null;
-            }
+            RepositoryVo vo = toVo(entity);
 
-            List<RepositoryEntity> entityList = new List<RepositoryEntity>();
-            foreach (var vo in voList)
-            {
-                entityList.Add(toEntity(vo));
-            }
+            List<TheMetaRepositoryTypeEntity> theMetaRepositoryTypeEntityList = theMetaRepositoryTypeMeta.GetEntityList();
+            vo.RepositoryTypeId = theMetaRepositoryTypeConvertor.getLessVoList(theMetaRepositoryTypeEntityList, entity.RepositoryTypeId);
 
-            return entityList;
+            return vo;
         }
 
-        public List<RepositoryVo> toVoList(List<RepositoryEntity> entityList)
+        public RepositoryVo toMoreVo(RepositoryEntity entity)
+        {
+            RepositoryVo vo = toVo(entity);
+
+            List<TheMetaRepositoryTypeEntity> theMetaRepositoryTypeEntityList = theMetaRepositoryTypeMeta.GetEntityList();
+            vo.RepositoryTypeId = theMetaRepositoryTypeConvertor.getMoreVoList(theMetaRepositoryTypeEntityList, entity.RepositoryTypeId);
+
+            return vo;
+        }
+
+        public List<RepositoryVo> toLessVoList(List<RepositoryEntity> entityList)
         {
             if (entityList == null || entityList.Count == 0)
             {
@@ -76,37 +90,27 @@ namespace SavoryCms.Convertor
             }
 
             List<RepositoryVo> voList = new List<RepositoryVo>();
-            foreach (var entity in entityList)
-            {
-                voList.Add(toVo(entity, false));
+            foreach (RepositoryEntity entity in entityList) {
+                voList.Add(toLessVo(entity));
             }
 
             return voList;
         }
 
-        private int getRepositoryTypeId(RepositoryVo vo)
+        /// <summary>
+        /// 将entity转换为vo。不包括来自元数据的属性
+        /// </summary>
+        private RepositoryVo toVo(RepositoryEntity entity)
         {
-            List<MetaRepositoryTypeVo> items = vo.RepositoryTypeId;
-            if (items == null || items.Count == 0) {
-                return 0;
-            }
+            RepositoryVo vo = new RepositoryVo();
 
-            foreach(var item in items) {
-                if (item.Selected) {
-                    return item.RepositoryTypeId;
-                }
-            }
+            vo.Id = entity.Id;
+            vo.RepositoryName = entity.RepositoryName;
+            vo.GitlabProjectFullname = entity.GitlabProjectFullname;
+            vo.DataStatus = entity.DataStatus;
+            vo.Description = entity.Description;
 
-            return 0;
-        }
-
-        private List<MetaRepositoryTypeVo> getRepositoryTypeId(List<MetaRepositoryTypeEntity> metaRepositoryTypeEntityList, RepositoryEntity entity, bool isEditable)
-        {
-            if (isEditable) {
-                return metaRepositoryTypeConvertor.getEditableListByIntKeyList(metaRepositoryTypeEntityList, new List<int> { entity.RepositoryTypeId });
-            } else {
-                return metaRepositoryTypeConvertor.getVoListByIntKeyList(metaRepositoryTypeEntityList, new List<int> { entity.RepositoryTypeId });
-            }
+            return vo;
         }
     }
 }

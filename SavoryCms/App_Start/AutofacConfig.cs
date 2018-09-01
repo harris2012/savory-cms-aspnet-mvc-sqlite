@@ -42,13 +42,19 @@ namespace SavoryCms
                 builder.RegisterType<SqliteMetaAppTypeRepository>().As<IMetaAppTypeRepository>().SingleInstance();
                 builder.RegisterType<SqliteMetaRepositoryTypeRepository>().As<IMetaRepositoryTypeRepository>().SingleInstance();
 
+                builder.RegisterType<SqliteTheMetaAppTypeRepository>().As<ITheMetaAppTypeRepository>().SingleInstance();
+                builder.RegisterType<SqliteTheMetaRepositoryTypeRepository>().As<ITheMetaRepositoryTypeRepository>().SingleInstance();
+
                 builder.RegisterType<AppConvertor>().As<IAppConvertor>().SingleInstance();
                 builder.RegisterType<RepositoryConvertor>().As<IRepositoryConvertor>().SingleInstance();
                 builder.RegisterType<MetaAppTypeConvertor>().As<IMetaAppTypeConvertor>().SingleInstance();
                 builder.RegisterType<MetaRepositoryTypeConvertor>().As<IMetaRepositoryTypeConvertor>().SingleInstance();
 
-                builder.RegisterType<MetaAppTypeMeta>().As<IMetaAppTypeMeta>().SingleInstance();
-                builder.RegisterType<MetaRepositoryTypeMeta>().As<IMetaRepositoryTypeMeta>().SingleInstance();
+                builder.RegisterType<TheMetaAppTypeConvertor>().As<ITheMetaAppTypeConvertor>().SingleInstance();
+                builder.RegisterType<TheMetaRepositoryTypeConvertor>().As<ITheMetaRepositoryTypeConvertor>().SingleInstance();
+
+                builder.RegisterType<TheMetaAppTypeMeta>().As<ITheMetaAppTypeMeta>().SingleInstance();
+                builder.RegisterType<TheMetaRepositoryTypeMeta>().As<ITheMetaRepositoryTypeMeta>().SingleInstance();
 
                 config.DependencyResolver = new AutofacWebApiDependencyResolver(builder.Build());
             }

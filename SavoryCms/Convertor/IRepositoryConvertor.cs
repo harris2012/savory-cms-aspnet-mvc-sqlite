@@ -1,3 +1,4 @@
+using SavoryCms.Controllers.Request;
 using SavoryCms.Repository.Entity;
 using SavoryCms.Vo;
 using System;
@@ -9,33 +10,35 @@ namespace SavoryCms.Convertor
 {
     public interface IRepositoryConvertor
     {
-        /// <summary>
-        /// 转换为 entity
-        /// </summary>
-        /// <param name="vo">需要转换的 vo</param>
-        /// <returns>转换之后的 entity</returns>
-        RepositoryEntity toEntity(RepositoryVo vo);
 
         /// <summary>
-        /// 转换为 vo
+        /// request 转换为 entity
         /// </summary>
-        /// <param name="entity">需要转换的 entity</param>
-        /// <param name="isEditable">是否用于编辑</param>
-        /// <returns>转换之后的 vo</returns>
-        RepositoryVo toVo(RepositoryEntity entity, bool isEditable);
+        RepositoryEntity toEntity(RepositoryCreateRequest request);
 
         /// <summary>
-        /// 转换为 entityList
+        /// request 转换为 entity
         /// </summary>
-        /// <param name="voList">需要转换的 voList</param>
-        /// <returns>转换之后的 entityList</returns>
-        List<RepositoryEntity> toEntityList(List<RepositoryVo> voList);
+        RepositoryEntity toEntity(RepositoryUpdateRequest request);
 
         /// <summary>
-        /// 转换为 voList
+        /// 获取空 vo
         /// </summary>
-        /// <param name="entityList">需要转换的 entityList</param>
-        /// <returns>转换之后的 voList</returns>
-        List<RepositoryVo> toVoList(List<RepositoryEntity> entityList);
+        RepositoryVo toEmptyVo();
+
+        /// <summary>
+        /// entity 转换为 vo
+        /// </summary>
+        RepositoryVo toLessVo(RepositoryEntity entity);
+
+        /// <summary>
+        /// entity 转换为 vo
+        /// </summary>
+        RepositoryVo toMoreVo(RepositoryEntity entity);
+
+        /// <summary>
+        /// entityList 转换为 voList
+        /// </summary>
+        List<RepositoryVo> toLessVoList(List<RepositoryEntity> entityList);
     }
 }

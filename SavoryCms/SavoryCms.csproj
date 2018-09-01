@@ -120,6 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="styles\style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -142,13 +143,13 @@
     <Content Include="lib\angular-ui-bootstrap\2.5.0\js\ui-bootstrap-tpls.min.js" />
     <Content Include="lib\angular-ui-router\1.0.5\angular-ui-router.min.js" />
     <Content Include="lib\angular-ui-sortable\0.19.0\angular-ui-sortable.min.js" />
-    <Content Include="lib\angularjs\1.6.4\angular-resource.min.js" />
-    <Content Include="lib\angularjs\1.6.4\angular.min.js" />
+    <Content Include="lib\angularjs\1.7.3\angular-resource.min.js" />
+    <Content Include="lib\angularjs\1.7.3\angular.min.js" />
     <Content Include="lib\bootstrap\3.3.7\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\3.3.7\css\bootstrap.min.css" />
     <Content Include="lib\bootstrap\3.3.7\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="lib\bootstrap\3.3.7\js\bootstrap.min.js" />
-    <Content Include="lib\icheck-bootstrap\1.0.7\icheck-bootstrap.min.css" />
+    <Content Include="lib\icheck-bootstrap\3.0.1\icheck-bootstrap.min.css" />
     <Content Include="lib\jquery-ui\1.12.1\css\jquery-ui.min.css" />
     <Content Include="lib\jquery-ui\1.12.1\js\jquery-ui-1.12.1.min.js" />
     <Content Include="lib\jquery\1.10.2\jquery.min.js" />
@@ -216,12 +217,14 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\Request\AppCountRequest.cs" />
     <Compile Include="Controllers\Request\AppCreateRequest.cs" />
+    <Compile Include="Controllers\Request\AppEmptyRequest.cs" />
     <Compile Include="Controllers\Request\AppEditableRequest.cs" />
     <Compile Include="Controllers\Request\AppItemRequest.cs" />
     <Compile Include="Controllers\Request\AppItemsRequest.cs" />
     <Compile Include="Controllers\Request\AppUpdateRequest.cs" />
     <Compile Include="Controllers\Response\AppCountResponse.cs" />
     <Compile Include="Controllers\Response\AppCreateResponse.cs" />
+    <Compile Include="Controllers\Response\AppEmptyResponse.cs" />
     <Compile Include="Controllers\Response\AppEditableResponse.cs" />
     <Compile Include="Controllers\Response\AppItemResponse.cs" />
     <Compile Include="Controllers\Response\AppItemsResponse.cs" />
@@ -235,12 +238,14 @@
     <Compile Include="Controllers\RepositoryController.cs" />
     <Compile Include="Controllers\Request\RepositoryCountRequest.cs" />
     <Compile Include="Controllers\Request\RepositoryCreateRequest.cs" />
+    <Compile Include="Controllers\Request\RepositoryEmptyRequest.cs" />
     <Compile Include="Controllers\Request\RepositoryEditableRequest.cs" />
     <Compile Include="Controllers\Request\RepositoryItemRequest.cs" />
     <Compile Include="Controllers\Request\RepositoryItemsRequest.cs" />
     <Compile Include="Controllers\Request\RepositoryUpdateRequest.cs" />
     <Compile Include="Controllers\Response\RepositoryCountResponse.cs" />
     <Compile Include="Controllers\Response\RepositoryCreateResponse.cs" />
+    <Compile Include="Controllers\Response\RepositoryEmptyResponse.cs" />
     <Compile Include="Controllers\Response\RepositoryEditableResponse.cs" />
     <Compile Include="Controllers\Response\RepositoryItemResponse.cs" />
     <Compile Include="Controllers\Response\RepositoryItemsResponse.cs" />
@@ -254,12 +259,14 @@
     <Compile Include="Controllers\MetaAppTypeController.cs" />
     <Compile Include="Controllers\Request\MetaAppTypeCountRequest.cs" />
     <Compile Include="Controllers\Request\MetaAppTypeCreateRequest.cs" />
+    <Compile Include="Controllers\Request\MetaAppTypeEmptyRequest.cs" />
     <Compile Include="Controllers\Request\MetaAppTypeEditableRequest.cs" />
     <Compile Include="Controllers\Request\MetaAppTypeItemRequest.cs" />
     <Compile Include="Controllers\Request\MetaAppTypeItemsRequest.cs" />
     <Compile Include="Controllers\Request\MetaAppTypeUpdateRequest.cs" />
     <Compile Include="Controllers\Response\MetaAppTypeCountResponse.cs" />
     <Compile Include="Controllers\Response\MetaAppTypeCreateResponse.cs" />
+    <Compile Include="Controllers\Response\MetaAppTypeEmptyResponse.cs" />
     <Compile Include="Controllers\Response\MetaAppTypeEditableResponse.cs" />
     <Compile Include="Controllers\Response\MetaAppTypeItemResponse.cs" />
     <Compile Include="Controllers\Response\MetaAppTypeItemsResponse.cs" />
@@ -270,17 +277,17 @@
     <Compile Include="Repository\Entity\MetaAppTypeEntity.cs" />
     <Compile Include="Repository\IMetaAppTypeRepository.cs" />
     <Compile Include="Repository\Sqlite\SqliteMetaAppTypeRepository.cs" />
-    <Compile Include="Meta\IMetaAppTypeMeta.cs" />
-    <Compile Include="Meta\MetaAppTypeMeta.cs" />
     <Compile Include="Controllers\MetaRepositoryTypeController.cs" />
     <Compile Include="Controllers\Request\MetaRepositoryTypeCountRequest.cs" />
     <Compile Include="Controllers\Request\MetaRepositoryTypeCreateRequest.cs" />
+    <Compile Include="Controllers\Request\MetaRepositoryTypeEmptyRequest.cs" />
     <Compile Include="Controllers\Request\MetaRepositoryTypeEditableRequest.cs" />
     <Compile Include="Controllers\Request\MetaRepositoryTypeItemRequest.cs" />
     <Compile Include="Controllers\Request\MetaRepositoryTypeItemsRequest.cs" />
     <Compile Include="Controllers\Request\MetaRepositoryTypeUpdateRequest.cs" />
     <Compile Include="Controllers\Response\MetaRepositoryTypeCountResponse.cs" />
     <Compile Include="Controllers\Response\MetaRepositoryTypeCreateResponse.cs" />
+    <Compile Include="Controllers\Response\MetaRepositoryTypeEmptyResponse.cs" />
     <Compile Include="Controllers\Response\MetaRepositoryTypeEditableResponse.cs" />
     <Compile Include="Controllers\Response\MetaRepositoryTypeItemResponse.cs" />
     <Compile Include="Controllers\Response\MetaRepositoryTypeItemsResponse.cs" />
@@ -291,8 +298,24 @@
     <Compile Include="Repository\Entity\MetaRepositoryTypeEntity.cs" />
     <Compile Include="Repository\IMetaRepositoryTypeRepository.cs" />
     <Compile Include="Repository\Sqlite\SqliteMetaRepositoryTypeRepository.cs" />
-    <Compile Include="Meta\IMetaRepositoryTypeMeta.cs" />
-    <Compile Include="Meta\MetaRepositoryTypeMeta.cs" />
+    <Compile Include="Vo\TheMetaAppTypeVo.cs" />
+    <Compile Include="Repository\Entity\TheMetaAppTypeEntity.cs" />
+    <Compile Include="Repository\ITheMetaAppTypeRepository.cs" />
+    <Compile Include="Convertor\TheMetaAppTypeConvertor.cs" />
+    <Compile Include="Convertor\ITheMetaAppTypeConvertor.cs" />
+    <Compile Include="Repository\Sqlite\SqliteTheMetaAppTypeRepository.cs" />
+    <Compile Include="Vo\TheMetaRepositoryTypeVo.cs" />
+    <Compile Include="Repository\Entity\TheMetaRepositoryTypeEntity.cs" />
+    <Compile Include="Repository\ITheMetaRepositoryTypeRepository.cs" />
+    <Compile Include="Convertor\TheMetaRepositoryTypeConvertor.cs" />
+    <Compile Include="Convertor\ITheMetaRepositoryTypeConvertor.cs" />
+    <Compile Include="Repository\Sqlite\SqliteTheMetaRepositoryTypeRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Meta\ITheMetaAppTypeMeta.cs" />
+    <Compile Include="Meta\TheMetaAppTypeMeta.cs" />
+    <Compile Include="Meta\ITheMetaRepositoryTypeMeta.cs" />
+    <Compile Include="Meta\TheMetaRepositoryTypeMeta.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

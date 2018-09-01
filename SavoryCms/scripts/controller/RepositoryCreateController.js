@@ -1,6 +1,20 @@
 function RepositoryCreateController($scope, $state, $stateParams, SavoryCmsService) {
 
-    $scope.item = {};
+    function repository_empty_callback(response) {
+
+        if (response.status != 1) {
+            console.log(response.message);
+            return;
+        }
+
+        $scope.item = response.item;
+        {
+            if($scope.item.repositoryTypeId.length > 0)
+            {
+                $scope.item.repository_type_id_value = $scope.item.repositoryTypeId[0].repositoryTypeId;
+            }
+        }
+    }
 
     function repository_create_callback(response) {
 
@@ -14,39 +28,23 @@ function RepositoryCreateController($scope, $state, $stateParams, SavoryCmsServi
         $state.go('app.repository-list');
     }
 
-    function meta_repository_type_items_for_repository_type_id_callback(response) {
-
-        if (response.status == 1) {
-            $scope.repositoryTypeIds = response.items;
-        }
-    }
-
     $scope.confirmCreate = function () {
 
         $scope.waiting = true;
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
-        {
-            var items = [];
-            for (var i = 0; i < $scope.repositoryTypeIds.length; i++) {
-                if ($scope.repositoryTypeIds[i] == $scope.item.repositoryTypeId_value) {
-                    items.push($scope.repositoryTypeIds[i]);
-                    $scope.repositoryTypeIds[i].selected = true;
-                    break;
-                }
-            }
-            request.item.repositoryTypeId = items;
-        }
+        request.id = $scope.item.id;
+        request.repositoryName = $scope.item.repositoryName;
+        request.repositoryTypeId = $scope.item.repository_type_id_value;
+        request.gitlabProjectFullname = $scope.item.gitlabProjectFullname;
+        request.dataStatus = $scope.item.dataStatus;
+        request.description = $scope.item.description;
 
         SavoryCmsService.repository_create(request).then(repository_create_callback)
     }
 
     {
-        var request = {};
-        request.pageIndex = 1;
-
-        SavoryCmsService.meta_repository_type_items(request).then(meta_repository_type_items_for_repository_type_id_callback)
+        SavoryCmsService.repository_empty({}).then(repository_empty_callback);
     }
 }

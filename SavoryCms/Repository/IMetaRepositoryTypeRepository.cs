@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 using SavoryCms.Repository.Entity;
 
-
 namespace SavoryCms.Repository
 {
     public interface IMetaRepositoryTypeRepository

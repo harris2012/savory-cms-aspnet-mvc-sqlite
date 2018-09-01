@@ -1,6 +1,14 @@
 function MetaRepositoryTypeCreateController($scope, $state, $stateParams, SavoryCmsService) {
 
-    $scope.item = {};
+    function meta_repository_type_empty_callback(response) {
+
+        if (response.status != 1) {
+            console.log(response.message);
+            return;
+        }
+
+        $scope.item = response.item;
+    }
 
     function meta_repository_type_create_callback(response) {
 
@@ -20,9 +28,14 @@ function MetaRepositoryTypeCreateController($scope, $state, $stateParams, Savory
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
+        request.id = $scope.item.id;
+        request.repositoryTypeId = $scope.item.repositoryTypeId;
+        request.repositoryTypeName = $scope.item.repositoryTypeName;
 
         SavoryCmsService.meta_repository_type_create(request).then(meta_repository_type_create_callback)
     }
 
+    {
+        SavoryCmsService.meta_repository_type_empty({}).then(meta_repository_type_empty_callback);
+    }
 }

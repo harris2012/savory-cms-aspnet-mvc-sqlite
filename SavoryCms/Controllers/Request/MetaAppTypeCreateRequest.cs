@@ -9,6 +9,10 @@ namespace SavoryCms.Controllers.Request
 {
     public class MetaAppTypeCreateRequest
     {
-        public MetaAppTypeVo Item { get; set; }
+
+        public int? AppTypeId { get; set; }
+
+        public string AppTypeName { get; set; }
+
     }
 }

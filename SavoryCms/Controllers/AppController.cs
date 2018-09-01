@@ -25,7 +25,9 @@ namespace SavoryCms.Controllers
 
         private IAppConvertor appConvertor;
 
-        public AppController(IAppRepository appRepository, IAppConvertor appConvertor)
+        public AppController(
+            IAppRepository appRepository,
+            IAppConvertor appConvertor)
         {
             this.appRepository = appRepository;
             this.appConvertor = appConvertor;
@@ -39,7 +41,7 @@ namespace SavoryCms.Controllers
 
             List<AppEntity> entityList = appRepository.GetEntityList(request.PageIndex, PAGE_SIZE);
 
-            response.Items = appConvertor.toVoList(entityList);
+            response.Items = appConvertor.toLessVoList(entityList);
 
             response.Status = 1;
             return response;
@@ -49,7 +51,6 @@ namespace SavoryCms.Controllers
         [Route("count")]
         public AppCountResponse Count([FromBody]AppCountRequest request)
         {
-
             AppCountResponse response = new AppCountResponse();
 
             int count = appRepository.GetCount();
@@ -64,7 +65,6 @@ namespace SavoryCms.Controllers
         [Route("item")]
         public AppItemResponse Item([FromBody]AppItemRequest request)
         {
-
             AppItemResponse response = new AppItemResponse();
 
             if (request.Id <= 0)
@@ -80,7 +80,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = appConvertor.toVo(entity, false);
+            response.Item = appConvertor.toLessVo(entity);
 
             response.Status = 1;
             return response;
@@ -90,10 +90,21 @@ namespace SavoryCms.Controllers
         [Route("create")]
         public AppCreateResponse Create([FromBody]AppCreateRequest request)
         {
-
             AppCreateResponse response = new AppCreateResponse();
 
-            appRepository.Create(appConvertor.toEntity(request.Item));
+            appRepository.Create(appConvertor.toEntity(request));
+
+            response.Status = 1;
+            return response;
+        }
+
+        [HttpPost]
+        [Route("empty")]
+        public AppEmptyResponse Empty([FromBody]AppEditableRequest request)
+        {
+            AppEmptyResponse response = new AppEmptyResponse();
+
+            response.Item = appConvertor.toEmptyVo();
 
             response.Status = 1;
             return response;
@@ -119,7 +130,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            response.Item = appConvertor.toVo(entity, true);
+            response.Item = appConvertor.toMoreVo(entity);
 
             response.Status = 1;
             return response;
@@ -132,20 +143,20 @@ namespace SavoryCms.Controllers
 
             AppUpdateResponse response = new AppUpdateResponse();
 
-            if (request.Item.Id <= 0)
+            if (request.Id == 0 || request.Id < 0)
             {
                 response.Status = -1;
                 return response;
             }
 
-            AppEntity entity = appRepository.GetById(request.Item.Id);
+            AppEntity entity = appRepository.GetById(request.Id.Value);
             if (entity == null)
             {
                 response.Status = 404;
                 return response;
             }
 
-            appRepository.Update(appConvertor.toEntity(request.Item));
+            appRepository.Update(appConvertor.toEntity(request));
 
             response.Status = 1;
             return response;

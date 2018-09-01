@@ -10,15 +10,12 @@ namespace SavoryCms.Vo
     {
 
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("appTypeId")]
-        public int AppTypeId { get; set; }
+        public int? AppTypeId { get; set; }
 
         [JsonProperty("appTypeName")]
         public string AppTypeName { get; set; }
-
-        [JsonProperty("selected")]
-        public bool Selected { get; set; }
     }
 }

@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace SavoryCms.Controllers.Request
 {
-    public class AppFiltersRequest
+    public class MetaAppTypeEmptyRequest
     {
-
     }
 }

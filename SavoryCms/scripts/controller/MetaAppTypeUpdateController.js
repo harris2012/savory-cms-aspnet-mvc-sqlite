@@ -27,7 +27,9 @@ function MetaAppTypeUpdateController($scope, $state, $stateParams, SavoryCmsServ
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
+        request.id = $scope.item.id;
+        request.appTypeId = $scope.item.appTypeId;
+        request.appTypeName = $scope.item.appTypeName;
 
         SavoryCmsService.meta_app_type_update(request).then(meta_app_type_update_callback)
     }

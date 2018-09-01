@@ -1,6 +1,14 @@
 function MetaAppTypeCreateController($scope, $state, $stateParams, SavoryCmsService) {
 
-    $scope.item = {};
+    function meta_app_type_empty_callback(response) {
+
+        if (response.status != 1) {
+            console.log(response.message);
+            return;
+        }
+
+        $scope.item = response.item;
+    }
 
     function meta_app_type_create_callback(response) {
 
@@ -20,9 +28,14 @@ function MetaAppTypeCreateController($scope, $state, $stateParams, SavoryCmsServ
         $scope.message = null;
 
         var request = {};
-        request.item = $scope.item;
+        request.id = $scope.item.id;
+        request.appTypeId = $scope.item.appTypeId;
+        request.appTypeName = $scope.item.appTypeName;
 
         SavoryCmsService.meta_app_type_create(request).then(meta_app_type_create_callback)
     }
 
+    {
+        SavoryCmsService.meta_app_type_empty({}).then(meta_app_type_empty_callback);
+    }
 }
