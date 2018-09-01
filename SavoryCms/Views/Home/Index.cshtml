@@ -41,29 +41,29 @@
     <script src="lib/angular-ui-bootstrap/2.5.0/js/ui-bootstrap-tpls.min.js"></script>
     <script src="lib/sweetalert/1.1.3/sweetalert.min.js"></script>
 
-    <script src="scripts/_route.js?v=${releaseNo}"></script>
-    <script src="scripts/_service.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/HeaderController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/AppListController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/AppItemController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/AppCreateController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/AppUpdateController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/RepositoryListController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/RepositoryItemController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/RepositoryCreateController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/RepositoryUpdateController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaAppTypeListController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaAppTypeItemController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaAppTypeCreateController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaAppTypeUpdateController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaRepositoryTypeListController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaRepositoryTypeItemController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaRepositoryTypeCreateController.js?v=${releaseNo}"></script>
-    <script src="scripts/controller/MetaRepositoryTypeUpdateController.js?v=${releaseNo}"></script>
-    <script src="scripts/_app.js?v=${releaseNo}"></script>
+    <script src="scripts/_route.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/_service.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/HeaderController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/AppListController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/AppItemController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/AppCreateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/AppUpdateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/RepositoryListController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/RepositoryItemController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/RepositoryCreateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/RepositoryUpdateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaAppTypeListController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaAppTypeItemController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaAppTypeCreateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaAppTypeUpdateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaRepositoryTypeListController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaRepositoryTypeItemController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaRepositoryTypeCreateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/controller/MetaRepositoryTypeUpdateController.js?v=@ViewBag.ReleaseNo"></script>
+    <script src="scripts/_app.js?v=@ViewBag.ReleaseNo"></script>
 
     <script>
-        window.releaseNo = "${releaseNo}";
+        window.releaseNo = "@ViewBag.ReleaseNo";
     </script>
 
 </body>
