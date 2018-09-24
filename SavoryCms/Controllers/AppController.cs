@@ -149,7 +149,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            AppEntity entity = appRepository.GetById(request.Id.Value);
+            AppEntity entity = appRepository.GetById(request.Id);
             if (entity == null)
             {
                 response.Status = 404;

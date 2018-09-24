@@ -10,7 +10,7 @@ namespace SavoryCms.Controllers.Request
     public class RepositoryUpdateRequest
     {
 
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         public string RepositoryName { get; set; }
 

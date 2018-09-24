@@ -23,6 +23,7 @@ function AppUpdateController($scope, $state, $stateParams, SavoryCmsService) {
 
     function app_update_callback(response) {
         if (response.status != 1) {
+            swal(response.message);
             return;
         }
 

@@ -1,12 +1,12 @@
 <ol class="breadcrumb">
     <li><a ui-sref="app.welcome">首页</a></li>
-    <li><a ui-sref="app.app-list">应用列表页</a></li>
+    <li><a ui-sref="app.app-list">应用列表</a></li>
     <li class="active">编辑</li>
 </ol>
 
 <div class="row" ng-show="!loaded">
     <div class="col-sm-12">
-        <img src="./images/loading.gif" width="20" height="20" />
+        <i class="loading"></i>
     </div>
 </div>
 
@@ -17,14 +17,14 @@
 <form class="form form-horizontal" ng-show="loaded && item != null" name="updateForm" novalidate>
 
     <div class="form-group">
-        <label class="col-sm-1 control-label">编号</label>
+        <label class="col-sm-2 control-label">编号</label>
         <div class="col-sm-10">
             <p class="form-control-static">{{item.id}}</p>
         </div>
     </div>
 
     <div class="form-group" ng-class="{'has-error':createForm.appId.$dirty&&createForm.appId.$error.required}">
-        <label class="col-sm-1 control-label">应用编号</label>
+        <label class="col-sm-2 control-label">应用编号</label>
         <div class="col-sm-2">
             <input type="number" class="form-control" name="appId" ng-model="item.appId" required />
             <p class="text-danger" ng-show="updateForm.appId.$dirty && updateForm.appId.$error.required">必填</p>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error':createForm.appEname.$dirty&&(createForm.appEname.$error.required||createForm.appEname.$error.pattern)}">
-        <label class="col-sm-1 control-label">英文名</label>
+        <label class="col-sm-2 control-label">英文名</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="appEname" ng-model="item.appEname" required ng-pattern="/^[a-z]+(\-[a-z]+)*$/" />
             <p class="text-danger" ng-show="updateForm.appEname.$dirty && updateForm.appEname.$error.required">必填</p>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error':createForm.appName.$dirty&&createForm.appName.$error.required}">
-        <label class="col-sm-1 control-label">应用名称</label>
+        <label class="col-sm-2 control-label">应用名称</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="appName" ng-model="item.appName" required />
             <p class="text-danger" ng-show="updateForm.appName.$dirty && updateForm.appName.$error.required">必填</p>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="form-group">
-        <label class="col-sm-1 control-label">应用类型</label>
+        <label class="col-sm-2 control-label">应用类型</label>
         <div class="col-sm-10">
             <div class="icheck-primary icheck-inline" ng-repeat="x in item.appTypeId">
                 <input type="radio" id="appTypeId_{{x.appTypeId}}" name="appTypeId" ng-value="x.appTypeId" ng-model="$parent.item.app_type_id_value" />
@@ -59,7 +59,7 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error':createForm.dataStatus.$dirty&&createForm.dataStatus.$error.required}">
-        <label class="col-sm-1 control-label">数据状态</label>
+        <label class="col-sm-2 control-label">数据状态</label>
         <div class="col-sm-2">
             <input type="number" class="form-control" name="dataStatus" ng-model="item.dataStatus" required />
             <p class="text-danger" ng-show="updateForm.dataStatus.$dirty && updateForm.dataStatus.$error.required">必填</p>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error':createForm.description.$dirty&&createForm.description.$error.required}">
-        <label class="col-sm-1 control-label">应用描述</label>
+        <label class="col-sm-2 control-label">应用描述</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="description" ng-model="item.description" required />
             <p class="text-danger" ng-show="updateForm.description.$dirty && updateForm.description.$error.required">必填</p>
@@ -75,7 +75,7 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-10 col-sm-offset-2">
             <input type="button" ng-click="confirmUpdate()" value="确认更新" class="btn btn-success" />
         </div>
     </div>

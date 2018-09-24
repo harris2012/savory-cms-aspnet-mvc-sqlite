@@ -31,7 +31,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public MetaRepositoryTypeEntity GetById(long id)
         {
-            string sql = "select id as Id, repository_type_id as RepositoryTypeId, repository_type_name as RepositoryTypeName from meta_repository_type where Id = ?";
+            string sql = "select id, repository_type_id as RepositoryTypeId, repository_type_name as RepositoryTypeName from meta_repository_type where Id = ?";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -51,7 +51,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<MetaRepositoryTypeEntity> GetEntityList()
         {
-            string sql = "select id as Id, repository_type_id as RepositoryTypeId, repository_type_name as RepositoryTypeName from meta_repository_type";
+            string sql = "select id, repository_type_id as RepositoryTypeId, repository_type_name as RepositoryTypeName from meta_repository_type";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -61,7 +61,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<MetaRepositoryTypeEntity> GetEntityList(int pageIndex, int pageSize)
         {
-            string sql = "select id as Id, repository_type_id as RepositoryTypeId, repository_type_name as RepositoryTypeName from meta_repository_type limit @Start, @Count";
+            string sql = "select id, repository_type_id as RepositoryTypeId, repository_type_name as RepositoryTypeName from meta_repository_type limit @Start, @Count";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -75,7 +75,7 @@ namespace SavoryCms.Repository.Sqlite
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
-                sqliteConn.Execute(sql, new { Id = entity.Id, RepositoryTypeId = entity.RepositoryTypeId, RepositoryTypeName = entity.RepositoryTypeName });
+                sqliteConn.Execute(sql, new { id = entity.Id, RepositoryTypeId = entity.RepositoryTypeId, RepositoryTypeName = entity.RepositoryTypeName });
             }
         }
     }

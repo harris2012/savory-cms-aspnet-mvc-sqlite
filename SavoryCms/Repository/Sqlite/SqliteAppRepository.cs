@@ -31,7 +31,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public AppEntity GetById(long id)
         {
-            string sql = "select id as Id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app where Id = ?";
+            string sql = "select id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app where Id = ?";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -51,7 +51,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<AppEntity> GetEntityList()
         {
-            string sql = "select id as Id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app";
+            string sql = "select id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -61,7 +61,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<AppEntity> GetEntityList(int pageIndex, int pageSize)
         {
-            string sql = "select id as Id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app limit @Start, @Count";
+            string sql = "select id, app_id as AppId, app_ename as AppEname, app_name as AppName, app_type_id as AppTypeId, data_status as DataStatus, description as Description from cms_app limit @Start, @Count";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -75,7 +75,7 @@ namespace SavoryCms.Repository.Sqlite
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
-                sqliteConn.Execute(sql, new { Id = entity.Id, AppId = entity.AppId, AppEname = entity.AppEname, AppName = entity.AppName, AppTypeId = entity.AppTypeId, DataStatus = entity.DataStatus, Description = entity.Description });
+                sqliteConn.Execute(sql, new { id = entity.Id, AppId = entity.AppId, AppEname = entity.AppEname, AppName = entity.AppName, AppTypeId = entity.AppTypeId, DataStatus = entity.DataStatus, Description = entity.Description });
             }
         }
     }

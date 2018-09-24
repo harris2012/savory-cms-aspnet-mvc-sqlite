@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavoryCms", "SavoryCms\SavoryCms.csproj", "{AB48634A-ED9F-42C5-A927-D46CBA6CDA94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavoryCms", "SavoryCms\SavoryCms.csproj", "{330067BB-5A0C-49C0-BE0B-2A7957B7CD24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AB48634A-ED9F-42C5-A927-D46CBA6CDA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB48634A-ED9F-42C5-A927-D46CBA6CDA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB48634A-ED9F-42C5-A927-D46CBA6CDA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB48634A-ED9F-42C5-A927-D46CBA6CDA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330067BB-5A0C-49C0-BE0B-2A7957B7CD24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330067BB-5A0C-49C0-BE0B-2A7957B7CD24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330067BB-5A0C-49C0-BE0B-2A7957B7CD24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330067BB-5A0C-49C0-BE0B-2A7957B7CD24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {711B8EE0-A1B8-4F99-BAF1-46F85F6077B4}
+		SolutionGuid = {E5C374DE-699B-40F3-A86E-A8A0974EAE82}
 	EndGlobalSection
 EndGlobal

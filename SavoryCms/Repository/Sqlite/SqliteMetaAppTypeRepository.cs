@@ -31,7 +31,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public MetaAppTypeEntity GetById(long id)
         {
-            string sql = "select id as Id, app_type_id as AppTypeId, app_type_name as AppTypeName from meta_app_type where Id = ?";
+            string sql = "select id, app_type_id as AppTypeId, app_type_name as AppTypeName from meta_app_type where Id = ?";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -51,7 +51,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<MetaAppTypeEntity> GetEntityList()
         {
-            string sql = "select id as Id, app_type_id as AppTypeId, app_type_name as AppTypeName from meta_app_type";
+            string sql = "select id, app_type_id as AppTypeId, app_type_name as AppTypeName from meta_app_type";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -61,7 +61,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<MetaAppTypeEntity> GetEntityList(int pageIndex, int pageSize)
         {
-            string sql = "select id as Id, app_type_id as AppTypeId, app_type_name as AppTypeName from meta_app_type limit @Start, @Count";
+            string sql = "select id, app_type_id as AppTypeId, app_type_name as AppTypeName from meta_app_type limit @Start, @Count";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -75,7 +75,7 @@ namespace SavoryCms.Repository.Sqlite
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
-                sqliteConn.Execute(sql, new { Id = entity.Id, AppTypeId = entity.AppTypeId, AppTypeName = entity.AppTypeName });
+                sqliteConn.Execute(sql, new { id = entity.Id, AppTypeId = entity.AppTypeId, AppTypeName = entity.AppTypeName });
             }
         }
     }

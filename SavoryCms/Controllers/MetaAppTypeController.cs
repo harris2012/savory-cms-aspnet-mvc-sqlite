@@ -156,7 +156,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            MetaAppTypeEntity entity = metaAppTypeRepository.GetById(request.Id.Value);
+            MetaAppTypeEntity entity = metaAppTypeRepository.GetById(request.Id);
             if (entity == null)
             {
                 response.Status = 404;

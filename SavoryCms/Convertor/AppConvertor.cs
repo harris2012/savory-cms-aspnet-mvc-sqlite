@@ -43,7 +43,7 @@ namespace SavoryCms.Convertor
         {
             AppEntity entity = new AppEntity();
 
-            entity.Id = request.Id != null ? request.Id.Value : 0;
+            entity.Id = request.Id;
             entity.AppId = request.AppId != null ? request.AppId.Value : 0;
             entity.AppEname = request.AppEname;
             entity.AppName = request.AppName;

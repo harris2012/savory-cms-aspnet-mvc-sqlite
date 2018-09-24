@@ -3,7 +3,7 @@ function MetaRepositoryTypeCreateController($scope, $state, $stateParams, Savory
     function meta_repository_type_empty_callback(response) {
 
         if (response.status != 1) {
-            console.log(response.message);
+            swal(response.message);
             return;
         }
 

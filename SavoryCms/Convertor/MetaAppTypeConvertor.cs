@@ -26,7 +26,7 @@ namespace SavoryCms.Convertor
         {
             MetaAppTypeEntity entity = new MetaAppTypeEntity();
 
-            entity.Id = request.Id != null ? request.Id.Value : 0;
+            entity.Id = request.Id;
             entity.AppTypeId = request.AppTypeId != null ? request.AppTypeId.Value : 0;
             entity.AppTypeName = request.AppTypeName;
 

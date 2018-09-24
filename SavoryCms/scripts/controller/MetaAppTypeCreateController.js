@@ -3,7 +3,7 @@ function MetaAppTypeCreateController($scope, $state, $stateParams, SavoryCmsServ
     function meta_app_type_empty_callback(response) {
 
         if (response.status != 1) {
-            console.log(response.message);
+            swal(response.message);
             return;
         }
 

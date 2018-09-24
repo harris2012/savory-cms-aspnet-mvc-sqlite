@@ -1,12 +1,12 @@
 <ol class="breadcrumb">
     <li><a ui-sref="app.welcome">首页</a></li>
-    <li><a ui-sref="app.meta-repository-type-list">仓储类型列表页</a></li>
+    <li><a ui-sref="app.meta-repository-type-list">仓储类型列表</a></li>
     <li class="active">编辑</li>
 </ol>
 
 <div class="row" ng-show="!loaded">
     <div class="col-sm-12">
-        <img src="./images/loading.gif" width="20" height="20" />
+        <i class="loading"></i>
     </div>
 </div>
 
@@ -17,14 +17,14 @@
 <form class="form form-horizontal" ng-show="loaded && item != null" name="updateForm" novalidate>
 
     <div class="form-group">
-        <label class="col-sm-1 control-label">编号</label>
+        <label class="col-sm-2 control-label">编号</label>
         <div class="col-sm-10">
             <p class="form-control-static">{{item.id}}</p>
         </div>
     </div>
 
     <div class="form-group" ng-class="{'has-error':createForm.repositoryTypeId.$dirty&&createForm.repositoryTypeId.$error.required}">
-        <label class="col-sm-1 control-label">仓储类型编号</label>
+        <label class="col-sm-2 control-label">仓储类型编号</label>
         <div class="col-sm-2">
             <input type="number" class="form-control" name="repositoryTypeId" ng-model="item.repositoryTypeId" required />
             <p class="text-danger" ng-show="updateForm.repositoryTypeId.$dirty && updateForm.repositoryTypeId.$error.required">必填</p>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group" ng-class="{'has-error':createForm.repositoryTypeName.$dirty&&createForm.repositoryTypeName.$error.required}">
-        <label class="col-sm-1 control-label">仓储类型名称</label>
+        <label class="col-sm-2 control-label">仓储类型名称</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" name="repositoryTypeName" ng-model="item.repositoryTypeName" required />
             <p class="text-danger" ng-show="updateForm.repositoryTypeName.$dirty && updateForm.repositoryTypeName.$error.required">必填</p>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-10 col-sm-offset-2">
             <input type="button" ng-click="confirmUpdate()" value="确认更新" class="btn btn-success" />
         </div>
     </div>

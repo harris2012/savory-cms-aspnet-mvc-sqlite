@@ -31,7 +31,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public RepositoryEntity GetById(long id)
         {
-            string sql = "select id as Id, repository_name as RepositoryName, repository_type_id as RepositoryTypeId, gitlab_project_fullname as GitlabProjectFullname, data_status as DataStatus, description as Description from cms_repository where Id = ?";
+            string sql = "select id, repository_name as RepositoryName, repository_type_id as RepositoryTypeId, gitlab_project_fullname as GitlabProjectFullname, data_status as DataStatus, description as Description from cms_repository where Id = ?";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -51,7 +51,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<RepositoryEntity> GetEntityList()
         {
-            string sql = "select id as Id, repository_name as RepositoryName, repository_type_id as RepositoryTypeId, gitlab_project_fullname as GitlabProjectFullname, data_status as DataStatus, description as Description from cms_repository";
+            string sql = "select id, repository_name as RepositoryName, repository_type_id as RepositoryTypeId, gitlab_project_fullname as GitlabProjectFullname, data_status as DataStatus, description as Description from cms_repository";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -61,7 +61,7 @@ namespace SavoryCms.Repository.Sqlite
 
         public List<RepositoryEntity> GetEntityList(int pageIndex, int pageSize)
         {
-            string sql = "select id as Id, repository_name as RepositoryName, repository_type_id as RepositoryTypeId, gitlab_project_fullname as GitlabProjectFullname, data_status as DataStatus, description as Description from cms_repository limit @Start, @Count";
+            string sql = "select id, repository_name as RepositoryName, repository_type_id as RepositoryTypeId, gitlab_project_fullname as GitlabProjectFullname, data_status as DataStatus, description as Description from cms_repository limit @Start, @Count";
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
@@ -75,7 +75,7 @@ namespace SavoryCms.Repository.Sqlite
 
             using (var sqliteConn = connectionProvider.GetConnection())
             {
-                sqliteConn.Execute(sql, new { Id = entity.Id, RepositoryName = entity.RepositoryName, RepositoryTypeId = entity.RepositoryTypeId, GitlabProjectFullname = entity.GitlabProjectFullname, DataStatus = entity.DataStatus, Description = entity.Description });
+                sqliteConn.Execute(sql, new { id = entity.Id, RepositoryName = entity.RepositoryName, RepositoryTypeId = entity.RepositoryTypeId, GitlabProjectFullname = entity.GitlabProjectFullname, DataStatus = entity.DataStatus, Description = entity.Description });
             }
         }
     }

@@ -42,7 +42,7 @@ namespace SavoryCms.Convertor
         {
             RepositoryEntity entity = new RepositoryEntity();
 
-            entity.Id = request.Id != null ? request.Id.Value : 0;
+            entity.Id = request.Id;
             entity.RepositoryName = request.RepositoryName;
             entity.RepositoryTypeId = request.RepositoryTypeId != null ? request.RepositoryTypeId.Value : 0;
             entity.GitlabProjectFullname = request.GitlabProjectFullname;

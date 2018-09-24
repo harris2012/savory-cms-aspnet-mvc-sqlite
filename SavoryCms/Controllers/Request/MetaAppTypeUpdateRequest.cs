@@ -10,7 +10,7 @@ namespace SavoryCms.Controllers.Request
     public class MetaAppTypeUpdateRequest
     {
 
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         public int? AppTypeId { get; set; }
 

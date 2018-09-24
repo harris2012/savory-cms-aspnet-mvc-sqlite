@@ -3,7 +3,7 @@ function RepositoryCreateController($scope, $state, $stateParams, SavoryCmsServi
     function repository_empty_callback(response) {
 
         if (response.status != 1) {
-            console.log(response.message);
+            swal(response.message);
             return;
         }
 

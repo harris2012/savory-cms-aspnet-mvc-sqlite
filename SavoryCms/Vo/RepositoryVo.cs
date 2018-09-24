@@ -10,7 +10,7 @@ namespace SavoryCms.Vo
     {
 
         [JsonProperty("id")]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("repositoryName")]
         public string RepositoryName { get; set; }

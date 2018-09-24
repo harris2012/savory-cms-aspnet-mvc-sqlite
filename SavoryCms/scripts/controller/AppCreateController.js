@@ -3,7 +3,7 @@ function AppCreateController($scope, $state, $stateParams, SavoryCmsService) {
     function app_empty_callback(response) {
 
         if (response.status != 1) {
-            console.log(response.message);
+            swal(response.message);
             return;
         }
 

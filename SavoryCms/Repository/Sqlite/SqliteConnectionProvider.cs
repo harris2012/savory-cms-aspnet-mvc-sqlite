@@ -12,7 +12,7 @@ namespace SavoryCms.Repository.Sqlite
     {
         public IDbConnection GetConnection()
         {
-            var connString = ConfigurationManager.ConnectionStrings["SavoryCmsDB"].ConnectionString;
+            var connString = ConfigurationManager.ConnectionStrings["SavoryCmsSqlite"].ConnectionString;
 
             SQLiteConnection connection = new SQLiteConnection(connString);
             connection.Open();

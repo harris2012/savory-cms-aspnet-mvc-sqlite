@@ -26,7 +26,7 @@ namespace SavoryCms.Convertor
         {
             MetaRepositoryTypeEntity entity = new MetaRepositoryTypeEntity();
 
-            entity.Id = request.Id != null ? request.Id.Value : 0;
+            entity.Id = request.Id;
             entity.RepositoryTypeId = request.RepositoryTypeId != null ? request.RepositoryTypeId.Value : 0;
             entity.RepositoryTypeName = request.RepositoryTypeName;
 

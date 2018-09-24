@@ -15,6 +15,7 @@ function MetaAppTypeUpdateController($scope, $state, $stateParams, SavoryCmsServ
 
     function meta_app_type_update_callback(response) {
         if (response.status != 1) {
+            swal(response.message);
             return;
         }
 

@@ -15,6 +15,7 @@ function MetaRepositoryTypeUpdateController($scope, $state, $stateParams, Savory
 
     function meta_repository_type_update_callback(response) {
         if (response.status != 1) {
+            swal(response.message);
             return;
         }
 
