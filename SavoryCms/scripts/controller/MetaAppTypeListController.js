@@ -23,7 +23,6 @@ function MetaAppTypeListController($scope, $state, $stateParams, SavoryCmsServic
         $scope.totalCount = response.totalCount;
     }
 
-    //分页
     $scope.pageChanged = function () {
 
         $scope.items_loaded = false;
@@ -34,7 +33,7 @@ function MetaAppTypeListController($scope, $state, $stateParams, SavoryCmsServic
         request.pageIndex = $scope.currentPage;
 
         SavoryCmsService.meta_app_type_items(request).then(meta_app_type_items_callback);
-    };
+    }
 
     {
         $scope.maxSize = 10;

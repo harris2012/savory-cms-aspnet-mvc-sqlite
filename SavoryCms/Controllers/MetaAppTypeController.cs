@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -163,7 +163,7 @@ namespace SavoryCms.Controllers
                 return response;
             }
 
-            metaAppTypeRepository.Update(metaAppTypeConvertor.toEntity(request));
+            metaAppTypeRepository.Update(metaAppTypeConvertor.toEntity(request, entity));
 
             theMetaAppTypeMeta.Refresh();
 

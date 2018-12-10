@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using SavoryCms.Meta;
 using SavoryCms.Controllers.Request;
 using SavoryCms.Repository.Entity;
 using SavoryCms.Vo;
+using SavoryCms.Utility;
 
 namespace SavoryCms.Convertor
 {
@@ -38,7 +39,7 @@ namespace SavoryCms.Convertor
             return entity;
         }
 
-        public RepositoryEntity toEntity(RepositoryUpdateRequest request)
+        public RepositoryEntity toEntity(RepositoryUpdateRequest request, RepositoryEntity oldEntity)
         {
             RepositoryEntity entity = new RepositoryEntity();
 

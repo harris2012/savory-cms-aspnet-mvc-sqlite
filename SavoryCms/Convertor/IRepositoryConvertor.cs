@@ -1,4 +1,4 @@
-using SavoryCms.Controllers.Request;
+﻿using SavoryCms.Controllers.Request;
 using SavoryCms.Repository.Entity;
 using SavoryCms.Vo;
 using System;
@@ -19,7 +19,7 @@ namespace SavoryCms.Convertor
         /// <summary>
         /// request 转换为 entity
         /// </summary>
-        RepositoryEntity toEntity(RepositoryUpdateRequest request);
+        RepositoryEntity toEntity(RepositoryUpdateRequest request, RepositoryEntity oldEntity);
 
         /// <summary>
         /// 获取空 vo

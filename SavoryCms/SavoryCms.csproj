@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -121,15 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="styles\style.css" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\controller\HeaderController.js" />
@@ -171,6 +162,17 @@
     <Content Include="scripts\view\view_meta_repository_type_item.html" />
     <Content Include="scripts\view\view_meta_repository_type_create.html" />
     <Content Include="scripts\view\view_meta_repository_type_update.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
@@ -291,6 +293,9 @@
     <Compile Include="Meta\TheMetaAppTypeMeta.cs" />
     <Compile Include="Meta\ITheMetaRepositoryTypeMeta.cs" />
     <Compile Include="Meta\TheMetaRepositoryTypeMeta.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Utility\TimeConvertor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

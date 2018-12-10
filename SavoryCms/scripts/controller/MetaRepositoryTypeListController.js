@@ -23,7 +23,6 @@ function MetaRepositoryTypeListController($scope, $state, $stateParams, SavoryCm
         $scope.totalCount = response.totalCount;
     }
 
-    //分页
     $scope.pageChanged = function () {
 
         $scope.items_loaded = false;
@@ -34,7 +33,7 @@ function MetaRepositoryTypeListController($scope, $state, $stateParams, SavoryCm
         request.pageIndex = $scope.currentPage;
 
         SavoryCmsService.meta_repository_type_items(request).then(meta_repository_type_items_callback);
-    };
+    }
 
     {
         $scope.maxSize = 10;

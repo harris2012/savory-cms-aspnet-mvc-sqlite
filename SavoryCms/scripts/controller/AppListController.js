@@ -23,7 +23,6 @@ function AppListController($scope, $state, $stateParams, SavoryCmsService) {
         $scope.totalCount = response.totalCount;
     }
 
-    //分页
     $scope.pageChanged = function () {
 
         $scope.items_loaded = false;
@@ -34,7 +33,7 @@ function AppListController($scope, $state, $stateParams, SavoryCmsService) {
         request.pageIndex = $scope.currentPage;
 
         SavoryCmsService.app_items(request).then(app_items_callback);
-    };
+    }
 
     {
         $scope.maxSize = 10;

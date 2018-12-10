@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SavoryCms.Controllers.Request;
 using SavoryCms.Repository.Entity;
 using SavoryCms.Vo;
+using SavoryCms.Utility;
 
 namespace SavoryCms.Convertor
 {
@@ -22,7 +23,7 @@ namespace SavoryCms.Convertor
             return entity;
         }
 
-        public MetaAppTypeEntity toEntity(MetaAppTypeUpdateRequest request)
+        public MetaAppTypeEntity toEntity(MetaAppTypeUpdateRequest request, MetaAppTypeEntity oldEntity)
         {
             MetaAppTypeEntity entity = new MetaAppTypeEntity();
 
