@@ -1,4 +1,4 @@
-function AppItemController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function AppItemController($scope, $state, $stateParams, SavoryCmsService) {
 
     $scope.id = $stateParams.id;
 

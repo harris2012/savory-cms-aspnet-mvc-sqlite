@@ -1,4 +1,4 @@
-function MetaAppTypeItemController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function MetaAppTypeItemController($scope, $state, $stateParams, SavoryCmsService) {
 
     $scope.id = $stateParams.id;
 

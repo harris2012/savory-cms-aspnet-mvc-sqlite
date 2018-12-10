@@ -1,4 +1,4 @@
-function AppListController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function AppListController($scope, $state, $stateParams, SavoryCmsService) {
 
     function app_items_callback(response) {
 

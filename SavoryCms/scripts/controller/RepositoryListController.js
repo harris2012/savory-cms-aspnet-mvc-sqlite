@@ -1,4 +1,4 @@
-function RepositoryListController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function RepositoryListController($scope, $state, $stateParams, SavoryCmsService) {
 
     function repository_items_callback(response) {
 

@@ -1,4 +1,4 @@
-function MetaAppTypeListController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function MetaAppTypeListController($scope, $state, $stateParams, SavoryCmsService) {
 
     function meta_app_type_items_callback(response) {
 

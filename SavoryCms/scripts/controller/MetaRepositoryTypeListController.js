@@ -1,4 +1,4 @@
-function MetaRepositoryTypeListController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function MetaRepositoryTypeListController($scope, $state, $stateParams, SavoryCmsService) {
 
     function meta_repository_type_items_callback(response) {
 

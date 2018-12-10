@@ -1,4 +1,4 @@
-function SavoryCmsService($resource, $q) {
+﻿function SavoryCmsService($resource, $q) {
 
     var resource = $resource('api/search-support', {}, {
 

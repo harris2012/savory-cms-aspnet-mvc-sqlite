@@ -1,4 +1,4 @@
-function AppCreateController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function AppCreateController($scope, $state, $stateParams, SavoryCmsService) {
 
     function app_empty_callback(response) {
 

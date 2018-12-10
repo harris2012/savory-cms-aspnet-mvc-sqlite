@@ -1,4 +1,4 @@
-var route = function ($stateProvider, $urlRouterProvider) {
+﻿var route = function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.when('', '/welcome').when('/', '/welcome');
 

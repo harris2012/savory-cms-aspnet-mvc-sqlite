@@ -1,4 +1,4 @@
-function MetaAppTypeCreateController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function MetaAppTypeCreateController($scope, $state, $stateParams, SavoryCmsService) {
 
     function meta_app_type_empty_callback(response) {
 

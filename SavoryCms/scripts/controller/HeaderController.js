@@ -1,4 +1,4 @@
-function HeaderController($scope, SavoryCmsService) {
+﻿function HeaderController($scope, SavoryCmsService) {
 
     $scope.userName = "zhang";
 }

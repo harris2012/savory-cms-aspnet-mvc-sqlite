@@ -1,4 +1,4 @@
-function RepositoryItemController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function RepositoryItemController($scope, $state, $stateParams, SavoryCmsService) {
 
     $scope.id = $stateParams.id;
 

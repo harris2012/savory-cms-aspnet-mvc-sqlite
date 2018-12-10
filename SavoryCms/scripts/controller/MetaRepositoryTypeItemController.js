@@ -1,4 +1,4 @@
-function MetaRepositoryTypeItemController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function MetaRepositoryTypeItemController($scope, $state, $stateParams, SavoryCmsService) {
 
     $scope.id = $stateParams.id;
 

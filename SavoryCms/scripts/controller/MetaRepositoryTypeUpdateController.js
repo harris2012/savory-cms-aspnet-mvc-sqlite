@@ -1,4 +1,4 @@
-//新建数据库
+﻿//新建数据库
 function MetaRepositoryTypeUpdateController($scope, $state, $stateParams, SavoryCmsService) {
 
     $scope.id = $stateParams.id;

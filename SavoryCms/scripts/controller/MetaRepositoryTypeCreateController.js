@@ -1,4 +1,4 @@
-function MetaRepositoryTypeCreateController($scope, $state, $stateParams, SavoryCmsService) {
+﻿function MetaRepositoryTypeCreateController($scope, $state, $stateParams, SavoryCmsService) {
 
     function meta_repository_type_empty_callback(response) {
 
